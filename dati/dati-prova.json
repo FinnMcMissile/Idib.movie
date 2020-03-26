@@ -1,0 +1,139 @@
+{
+    "doppiatori" :[
+        {
+            "nome": "Antonella Rinaldi",
+            "dataNascita": "1954-10-12",
+            "citta": "Roma",
+            "miniBio": "Figlia dell'attore e doppiatore Peppino Rinaldi e dell'attrice Marina Dolfin, sorella del doppiatore Massimo e dell'attrice Francesca Rinaldi, moglie del doppiatore Mauro Gravina e madre della doppiatrice Benedetta Gravina.",
+            "film": [
+                {
+                    "titoloItaliano": "America oggi",
+                    "anno": "",
+                    "attore": "Jennifer Jason Leigh",
+                    "personaggio": "Lois Kaiser"
+                },
+                {
+                    "titoloItaliano": "Codice Mercury",
+                    "anno": "",
+                    "attore": "Carrie Preston",
+                    "personaggio": "Emily Lang"
+                },
+                {
+                    "titoloItaliano": "Niente velo per Jasira",
+                    "anno": "",
+                    "attore": "Carrie Preston",
+                    "personaggio": "Evelyn Vuoso"
+                },
+                {
+                    "titoloItaliano": "Mister Hula Hoop",
+                    "anno": "",
+                    "attore": "Jennifer Jason Leigh",
+                    "personaggio": "Amy Archer"
+                }
+            ]
+        },
+        {
+            "nome": "Francesco Pannofino",
+            "dataNascita": "1958-11-14",
+            "citta": "Pieve di Teco (Imperia)",
+            "miniBio": "Suo padre è di Ostuni e sua madre di Locorotondo. Marito della doppiatrice Emanuela Rossi, ha un figlio di nome Andrea. Fratello del dialoghista Lino Pannofino.",
+            "film": [
+                {
+                    "titoloItaliano": "Grido di libertà",
+                    "anno": "",
+                    "attore": "Denzel Washington",
+                    "personaggio": "Steve"
+                },
+                {
+                    "titoloItaliano": "The Peacemaker",
+                    "anno": "",
+                    "attore": "George Clooney",
+                    "personaggio": "Thomas Devoe"
+                },
+                {
+                    "titoloItaliano": "Ocean's 13",
+                    "anno": "",
+                    "attore": "George Clooney",
+                    "personaggio": "Daniel Ocean"
+                }
+
+            ]
+        },
+        {
+            "nome": "Eros Pagni",
+            "dataNascita": "1939-08-28",
+            "citta": "La Spezia",
+            "miniBio": "Vincitore del XIII Premio 'Renato Castellani' al Festival 'Voci a Sanremo' 2008. Si è diplomato nel 1959 all'Accademia d'Arte Drammatica di Roma.",
+            "film": [
+                {
+                    "titoloItaliano": "Una vita scellerata",
+                    "anno": "",
+                    "attore": "Ben Kingsley",
+                    "personaggio": "Governatore"
+                },
+                {
+                    "titoloItaliano": "Gremlins 2: la nuova stirpe",
+                    "anno": "",
+                    "attore": "Christophr Lee",
+                    "personaggio": "Dott. Catetere"
+                }
+            ]
+        }
+    ],
+
+    "film" : [
+        {
+            "titoloItaliano": "Anastasia",
+            "titoloOriginale": "Anastasia",
+            "anno": "1956",
+            "voci": [
+                {
+                    "doppiatore": "Lydia Simoneschi",
+                    "personaggio": "Anastasia",
+                    "attore": "Ingrid Bergman"
+                },
+                {
+                    "doppiatore": "Stefano Sibaldi",
+                    "personaggio": "Principe Bounin",
+                    "attore": "Yul Brynner"
+                }
+            ]
+        },
+        {
+            "titoloItaliano": "LadyHawke",
+            "titoloOriginale": "LadyHawke",
+            "anno": "1985",
+            "voci": [
+                {
+                    "doppiatore": "Cristiana Lionello",
+                    "personaggio": "Isabeau D'Anjou",
+                    "attore": "Michelle Pfeiffer"
+                },
+                {
+                    "doppiatore": "Massimo Foschi",
+                    "personaggio": "Etienne Navarre",
+                    "attore": "Rutger Hauer"
+                }
+            ]
+        },
+        {
+            "titoloItaliano": "Santa Clause",
+            "titoloOriginale": "The Santa Clause",
+            "anno": "1994",
+            "voci": [
+                {
+                    "doppiatore": "Giancarlo Giannini",
+                    "personaggio": "Scott Calvin / Santa Claus",
+                    "attore": "Tim Allen"
+                },
+                {
+                    "doppiatore": "Francesca Draghetti",
+                    "personaggio": "Laura Calvin Miller",
+                    "attore": "Wendy Crewson"
+                }
+            ]
+        }
+
+    ]
+
+}
