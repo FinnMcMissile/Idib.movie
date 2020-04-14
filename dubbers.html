@@ -9,10 +9,19 @@
 		<h1>Tutti i doppiatori</h1>
 
 		<ul id="dubbersList"></ul>
+		<button onclick="dubbersList.nextPage()">Mostra altro</button>
 
-		<!-- <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script> -->
-		<script src="/__/firebase/7.12.0/firebase-app.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="/__/firebase/7.13.0/firebase-app.js"></script>  
 		<script src="/__/firebase/7.12.0/firebase-database.js"></script>
+        <script src="/__/firebase/init.js"></script>      
+        <script type="text/javascript" src="utils.js"></script>		
         <script type="text/javascript" src="dubbers.js"></script>		
+
+
+<script id="dubber-template" type="text/template">
+	<li><img src="{photo}" style="max-width:50px;max-height:fit-content" alt="{alt}">{name}</li>
+</script>	
+	
 	</body>
 </html>
