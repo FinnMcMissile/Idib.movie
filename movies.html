@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Italians dub it better</title>
+		<link rel="icon" href="Immagini/.ico">
+		<link rel="stylesheet" href="Idib.movie.css">
+	</head>
+	<body>
+        <div class="container">
+            <h1>Tutti i film</h1>
+            <div class="content-wrapper">
+                <div class="side-bar">
+                    <p>cerca</p>
+                </div>
+                <div class="main-content" id="moviesList">
+                    <div class="panels-row">
+                        <div class="panel"></div>
+                        <div class="panel"></div>
+                        <div class="panel"></div>
+                        <div class="panel"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="/__/firebase/7.13.0/firebase-app.js"></script>  
+		<script src="/__/firebase/7.12.0/firebase-database.js"></script>
+        <script src="/__/firebase/init.js"></script>      
+        <script type="text/javascript" src="utils.js"></script>		
+        <script type="text/javascript" src="movies.js"></script>		
+
+<script id="movie-row-template" type="text/template">
+    <div class="panels-row"></div>
+</script>	
+        
+<script id="movie-template" type="text/template">
+    <div class="panel">
+        <div class="mini-poster">
+            <img src="{poster}" alt="{alt}">
+        </div>
+        <div class="mini-title">
+             <div class="boxed-text">
+                {title}
+            </div>
+        </div>
+    </div>
+</script>	
+
+    </body>
+</html>        

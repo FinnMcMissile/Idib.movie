@@ -1,1 +1,71 @@
-/* Al momento nulla... */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+.panel {
+    width: 200px;
+    height: 350px;
+    margin: 0.5em;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.panels-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.side-bar {
+    width: 20%;
+    min-width: 200px;
+    padding: 0 1em 0 1em;
+    margin: 0 0.5em 0 0.5em;
+    border: 1px solid lightgrey;
+    border-radius: 0.5em;
+}
+
+.main-content {
+    width: 80%;
+}
+
+.mini-poster {
+    height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mini-title {
+    margin-left: 0.5em;
+    padding-top: 0.5em;
+    height: 20%;
+    font-size: smaller;
+    padding-bottom: 0.5em;
+    margin-right: 0.5em;
+}
+
+.boxed-text {
+    word-break: break-word;
+    max-height: 4.1em;
+    overflow: hidden;
+}
