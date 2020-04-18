@@ -4,24 +4,56 @@
 		<title>Italians dub it better</title>
 		<link rel="icon" href="Immagini/.ico">
 		<link rel="stylesheet" href="Idib.movie.css">
+		<link rel="stylesheet" href="gallery.css">
 	</head>
 	<body>
-		<h1>Tutti i doppiatori</h1>
-
-		<input type="text" name="filter" id="filter"><button onclick="dubbersList.search()">cerca</button>
-		<ul id="dubbersList"></ul>
-		<button onclick="dubbersList.nextPage()">Mostra altro</button>
+        <div class="container">
+			<h1>Doppiatori</h1>
+            <div class="content-wrapper">
+                <div class="side-bar">
+                    <div class="side-panel">
+                        <div class="side-panel-title">
+                            Cerca
+                        </div>
+                        <div class="side-panel-content">
+                            <div class="side-panel-row">
+                                <input class="mr-2" type="text" name="filter" id="filter">
+                                <button id="search" onclick="dubbers.search($('#filter').val())">
+                                    <img src="images/search.svg"/>
+                                </button>
+                                <button id="clearFilter" onclick="dubbers.clearFilter()">
+                                    <img src="images/cancel-circle.svg"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+                <div class="main-content">
+                    <div id="dubbersGallery"></div>
+                </div>
+            </div>
+        </div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="/__/firebase/7.13.0/firebase-app.js"></script>  
 		<script src="/__/firebase/7.12.0/firebase-database.js"></script>
         <script src="/__/firebase/init.js"></script>      
         <script type="text/javascript" src="utils.js"></script>		
+        <script type="text/javascript" src="gallery.js"></script>		
         <script type="text/javascript" src="dubbers.js"></script>		
 
 
 <script id="dubber-template" type="text/template">
-	<li><img src="{photo}" style="max-width:50px;max-height:fit-content" alt="{alt}">{name}</li>
+    <div class="gallery-item">
+        <div class="gallery-item-photo">
+            <img src="{photo}" alt="{alt}">
+        </div>
+        <div class="gallery-title">
+			<div class="boxed-text bold">
+			   {name}
+		   </div>
+		</div>
+   </div>
 </script>	
 	
 	</body>

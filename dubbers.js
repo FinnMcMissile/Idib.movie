@@ -1,46 +1,76 @@
-var dubbersList = {
-  nextPage : function() {},
-  search : function() {}
+var dubbers = {
+  search : function(filter) {},
+  clearFilter: function() {}
 };
 
-( dubbersList => {
+( dubbers => {
 
-  var lastShown = null;
-  const dubbersListUI = document.getElementById("dubbersList");
-  dubbersListUI.innerHTML = "";
+  dubbers.search = function(filter) {
+    if (filter == "") return;
 
-  function showPage(dubbersRef, filter) {
-    dubbersRef.on("child_added", snap => {
-      var dubber = snap.val();
-      if (filter && !dubber.name.toUpperCase().includes(filter.toUpperCase()))
-        return;
-      if (dubber.name == lastShown)
-        return;
-      $("#dubbersList").append(
-        utils.render($('#dubber-template').html(), {
-          name: dubber.name, 
-          photo: dubber.photo ? utils.remoteURL(dubber.photo.name) : "images/no-dubber-photo.jpg",
-          alt: dubber.photo ? dubber.photo.description : "nessuna immagine"
-      }));
-      lastShown = dubber.name;
+    dubbersList = fullDubbersList.filter( dubber => {
+        return dubber.indexName.toUpperCase().includes(filter.toUpperCase()); 
+    }); 
+    dubbersGallery.refresh(dubbersList);
+    $("#search").hide();
+    $("#clearFilter").show();
+  } 
+
+  $("#clearFilter").hide();
+  dubbers.clearFilter = function() {
+    dubbersList = fullDubbersList;
+      $("#search").show();
+      $("#clearFilter").hide();
+      $("#filter").val("");
+      dubbersGallery.refresh(dubbersList);
+  }
+
+  function loadNextPage(lastLoaded) {
+    const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').startAt(lastLoaded).limitToFirst(dubbersGallery.PAGESIZE + 1);
+    dubbersRef.once("value", snap => {
+        snap.forEach( dubberSnap => {
+            var dubber = dubberSnap.val();
+            if (dubber.indexName == lastLoaded)
+                return;
+            dubber.works = null;
+            dubbersList.push(dubber);                    
+            lastLoaded = dubber.indexName;
+        });
+        if (snap.numChildren() == dubbersGallery.PAGESIZE + 1)
+            loadNextPage(lastLoaded);
+        else {
+          dubbersGallery.showLoading(false);
+          console.log("dubbers: " + dubbersList.length)
+        }
+    });
+  }
+
+  var fullDubbersList = [];
+  var dubbersList = fullDubbersList;
+  var dubbersGallery = new Gallery({
+      idGalleryHost: "#dubbersGallery",
+      renderItem: (dubber) => {
+          return utils.render($('#dubber-template').html(), {
+            name: dubber.name, 
+            photo: dubber.photo ? utils.remoteURL(dubber.photo.name) : "images/no-dubber-photo.jpg",
+            alt: dubber.photo ? dubber.photo.description : "nessuna immagine"
+        });            
+      }
   });
-}
-
-  dubbersList.nextPage = function() {
-    const dubbersRef = database.ref().child('dubbers').orderByChild('name').startAt(lastShown).limitToFirst(11);
-    showPage(dubbersRef);
-  }
-
-  dubbersList.search = function() {
-    var list = $("#dubbersList");
-    $("#dubbersList")[0].innerHTML = "";
-    var filter = $("#filter").val();
-    const dubbersRef = database.ref().child('dubbers');
-    showPage(dubbersRef, filter);
-  }
 
   var database = firebase.database();
-  const dubbersRef = database.ref().child('dubbers').orderByChild('name').limitToFirst(10);
-  showPage(dubbersRef);
+  const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').limitToFirst(dubbersGallery.PAGESIZE);
+  dubbersGallery.showLoading(true);
+  dubbersRef.once("value", snap => {
+      var lastLoaded = null;
+      snap.forEach( dubberSnap => {
+          var dubber = dubberSnap.val();
+          dubber.works = null;
+          dubbersList.push(dubber);
+          lastLoaded = dubber.indexName;
+      });
+      dubbersGallery.refresh(dubbersList);
+      loadNextPage(lastLoaded);
+  })
 
-})(dubbersList);
+})(dubbers);
