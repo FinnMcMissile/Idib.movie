@@ -10,16 +10,27 @@
             <div class="content-wrapper">
                 <div class="side-bar">
                     <div class="side-panel">
-                        Ordina per
-                        <select id="orderBy">
-                            <option value="yearDesc">Più recente</option>
-                            <option value="yearAsc">Meno recente</option>
-                            <option value="yearAsc">Titolo</option>
-                        </select>
+                        <div class="side-panel-title">
+                            Ordina per
+                        </div>
+                        <div class="side-panel-body">
+                            <select id="orderBy">
+                                <option value="yearAsc">Titolo</option>
+                                <option value="yearDesc">Più recente</option>
+                                <option value="yearAsc">Meno recente</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="side-panel">
-                        Cerca
-                        <input type="text" name="filter" id="filter"><button onclick="movies.search($('#filter').val())">Vai!</button>
+                        <div class="side-panel-title">
+                            Cerca
+                        </div>
+                        <div class="side-panel-content">
+                            <div class="side-panel-row">
+                                <input class="mr-2" type="text" name="filter" id="filter">
+                                <button onclick="movies.search($('#filter').val())">Vai!</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="main-content">
