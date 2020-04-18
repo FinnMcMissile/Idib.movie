@@ -1,6 +1,7 @@
 var movies = {
     showMore : function() {},
-    search : function(filter) {}
+    search : function(filter) {},
+    clearFilter: function() {}
 };
 
 var moviesGallery = {
@@ -106,7 +107,6 @@ var moviesGallery = {
     }
 
     movies.search = function(filter) {
-        var a = filter;
         if (filter == "") return;
 
         moviesList = fullMoviesList.filter( movie => {
@@ -114,6 +114,18 @@ var moviesGallery = {
         }); 
         moviesGallery.restart();
         movies.showMore();
+        $("#search").hide();
+        $("#clearFilter").show();
     } 
-    
+
+    $("#clearFilter").hide();
+    movies.clearFilter = function() {
+        moviesList = fullMoviesList;
+        $("#search").show();
+        $("#clearFilter").hide();
+        $("#filter").val("");
+        moviesGallery.restart();
+        movies.showMore();        
+    }
+
 })(movies);

@@ -28,7 +28,12 @@
                         <div class="side-panel-content">
                             <div class="side-panel-row">
                                 <input class="mr-2" type="text" name="filter" id="filter">
-                                <button onclick="movies.search($('#filter').val())">Vai!</button>
+                                <button id="search" onclick="movies.search($('#filter').val())">
+                                    <img src="images/search.svg"/>
+                                </button>
+                                <button id="clearFilter" onclick="movies.clearFilter()">
+                                    <img src="images/cancel-circle.svg"/>
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -148,6 +148,11 @@ body {
     background-color: white;
 }
 
+.side-panel button img {
+    height: 100%;
+    max-width: 100%;
+}
+
 .side-panel-title {
     height: 25%;
 }
