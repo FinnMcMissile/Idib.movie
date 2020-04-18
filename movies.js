@@ -1,66 +1,29 @@
 var movies = {
-    showMore : function() {},
     search : function(filter) {},
     clearFilter: function() {}
 };
 
-var moviesGallery = {
-    PAGESIZE : 12,
-    ROWSIZE: 4, 
-    currMovie : 0,
-    showMovie : function(movie) {},
-    restart : function() {},
-    noMore : function() {},
-    showLoading: function(show) {}
-};
-
-( moviesGallery => {
-
-    moviesGallery.showMovie = function(movie) {
-        if (moviesGallery.currMovie % moviesGallery.ROWSIZE == 0) {
-            var galleryRow = $($('#gallery-row-template').html());
-            currRowId = "gallery-row-" + (moviesGallery.currMovie / moviesGallery.ROWSIZE);
-            galleryRow.attr("id", currRowId);
-            $("#moviesGallery").append(galleryRow);
-        }
-        $("#" + currRowId).append(
-            utils.render($('#movie-template').html(), {
-                title: movie.indexTitle, 
-                year: movie.year ? movie.year : "", 
-                poster: movie.poster ? utils.remoteURL(movie.poster.name) : "images/no-movie-poster.jpg",
-                alt: movie.poster ? movie.poster.description : "nessuna immagine"
-            }));
-        moviesGallery.currMovie++;
-        if (moviesGallery.currMovie >= moviesGallery.PAGESIZE)
-            $("#moreButton").show();
-    }
-
-    moviesGallery.noMore = function() {
-        $("#moreButton").hide();
-    }
-
-    moviesGallery.showLoading = function(show) {
-        if (show) 
-            $("#loading").show(); 
-        else 
-            $("#loading").hide();
-    }
-
-    moviesGallery.restart = function() {
-        currRowId = null;
-        moviesGallery.currMovie = 0;
-        $("#moviesGallery")[0].innerHTML = "";
-        $("#moreButton").hide();
-    }
-
-    moviesGallery.restart();
-
-})(moviesGallery);
-  
 ( movies => {
 
-    var fullMoviesList = [];
-    var moviesList = fullMoviesList;
+    movies.search = function(filter) {
+        if (filter == "") return;
+
+        moviesList = fullMoviesList.filter( movie => {
+            return movie.indexTitle.toUpperCase().includes(filter.toUpperCase()); 
+        }); 
+        moviesGallery.refresh(moviesList);
+        $("#search").hide();
+        $("#clearFilter").show();
+    } 
+
+    $("#clearFilter").hide();
+    movies.clearFilter = function() {
+        moviesList = fullMoviesList;
+        $("#search").show();
+        $("#clearFilter").hide();
+        $("#filter").val("");
+        moviesGallery.refresh(moviesList);
+    }
 
     function loadNextPage(lastLoaded) {
         const moviesRef = database.ref().child('movies').orderByChild('indexTitle').startAt(lastLoaded).limitToFirst(moviesGallery.PAGESIZE + 1);
@@ -80,6 +43,20 @@ var moviesGallery = {
         });
     }
 
+    var fullMoviesList = [];
+    var moviesList = fullMoviesList;
+    var moviesGallery = new Gallery({
+        idGalleryHost: "#moviesGallery",
+        renderItem: (movie) => {
+            return utils.render($('#movie-template').html(), {
+                title: movie.indexTitle, 
+                year: movie.year ? movie.year : "", 
+                poster: movie.poster ? utils.remoteURL(movie.poster.name) : "images/no-movie-poster.jpg",
+                alt: movie.poster ? movie.poster.description : "nessuna immagine"
+            });            
+        }
+    });
+
     var database = firebase.database();
     const movieRef = database.ref().child('movies').orderByChild('indexTitle').limitToFirst(moviesGallery.PAGESIZE);
     moviesGallery.showLoading(true);
@@ -89,43 +66,10 @@ var moviesGallery = {
             var movie = movieSnap.val();
             movie.cast = null;
             moviesList.push(movie);
-            moviesGallery.showMovie(movie);
             lastLoaded = movie.indexTitle;
         });
+        moviesGallery.refresh(moviesList);
         loadNextPage(lastLoaded);
     })
   
-    movies.showMore = function() {
-        var startMovie = moviesGallery.currMovie; 
-        for (m = startMovie; m < startMovie + moviesGallery.PAGESIZE; m++) {
-            if (m >= moviesList.length) {
-                moviesGallery.noMore();
-                break;
-            }
-            moviesGallery.showMovie(moviesList[m]);
-        }
-    }
-
-    movies.search = function(filter) {
-        if (filter == "") return;
-
-        moviesList = fullMoviesList.filter( movie => {
-            return movie.indexTitle.toUpperCase().includes(filter.toUpperCase()); 
-        }); 
-        moviesGallery.restart();
-        movies.showMore();
-        $("#search").hide();
-        $("#clearFilter").show();
-    } 
-
-    $("#clearFilter").hide();
-    movies.clearFilter = function() {
-        moviesList = fullMoviesList;
-        $("#search").show();
-        $("#clearFilter").hide();
-        $("#filter").val("");
-        moviesGallery.restart();
-        movies.showMore();        
-    }
-
 })(movies);

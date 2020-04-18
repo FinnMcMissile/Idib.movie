@@ -3,6 +3,7 @@
 		<title>Italians dub it better</title>
 		<link rel="icon" href="Immagini/.ico">
 		<link rel="stylesheet" href="Idib.movie.css">
+		<link rel="stylesheet" href="gallery.css">
 	</head>
 	<body>
         <div class="container">
@@ -39,14 +40,7 @@
                     </div>
                 </div>
                 <div class="main-content">
-                    <div class="gallery-content" id="moviesGallery">
-                    </div>
-                    <div class="more-button" id="moreButton" onclick="movies.showMore()">
-                        Mostra altro 
-                        <div class="loading" id="loading">
-                            <img src="images/loading.gif" alt="">
-                        </div>
-                    </div>
+                    <div id="moviesGallery"></div>
                 </div>
             </div>
         </div>
@@ -56,15 +50,12 @@
 		<script src="/__/firebase/7.12.0/firebase-database.js"></script>
         <script src="/__/firebase/init.js"></script>      
         <script type="text/javascript" src="utils.js"></script>		
+        <script type="text/javascript" src="gallery.js"></script>		
         <script type="text/javascript" src="movies.js"></script>		
 
-<script id="gallery-row-template" type="text/template">
-    <div class="panels-row"></div>
-</script>	
-        
 <script id="movie-template" type="text/template">
-    <div class="panel">
-        <div class="gallery-poster">
+    <div class="gallery-item">
+        <div class="gallery-item-photo">
             <img src="{poster}" alt="{alt}">
         </div>
         <div class="gallery-title">
