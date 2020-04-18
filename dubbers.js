@@ -33,14 +33,14 @@ var dubbers = {
             if (dubber.indexName == lastLoaded)
                 return;
             dubber.works = null;
-            dubbersList.push(dubber);                    
+            fullDubbersList.push(dubber);                    
             lastLoaded = dubber.indexName;
         });
         if (snap.numChildren() == dubbersGallery.PAGESIZE + 1)
             loadNextPage(lastLoaded);
         else {
           dubbersGallery.showLoading(false);
-          console.log("dubbers: " + dubbersList.length)
+          console.log("dubbers: " + fullDubbersList.length)
         }
     });
   }
@@ -66,7 +66,7 @@ var dubbers = {
       snap.forEach( dubberSnap => {
           var dubber = dubberSnap.val();
           dubber.works = null;
-          dubbersList.push(dubber);
+          fullDubbersList.push(dubber);
           lastLoaded = dubber.indexName;
       });
       dubbersGallery.refresh(dubbersList);

@@ -33,7 +33,7 @@ var movies = {
                 if (movie.indexTitle == lastLoaded)
                     return;
                 movie.cast = null;
-                moviesList.push(movie);                    
+                fullMoviesList.push(movie);                    
                 lastLoaded = movie.indexTitle;
             });
             if (snap.numChildren() == moviesGallery.PAGESIZE + 1)
@@ -65,7 +65,7 @@ var movies = {
         snap.forEach( movieSnap => {
             var movie = movieSnap.val();
             movie.cast = null;
-            moviesList.push(movie);
+            fullMoviesList.push(movie);
             lastLoaded = movie.indexTitle;
         });
         moviesGallery.refresh(moviesList);
