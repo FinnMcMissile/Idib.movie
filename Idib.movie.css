@@ -115,4 +115,17 @@ body {
     padding-bottom: 0.5em;
     text-align: center;
     cursor: pointer;
+    display: inline-block;
+}
+
+.loading {
+    position: relative;
+    float: right;
+    height: 1.4em;
+}
+
+.loading img {
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;    
 }

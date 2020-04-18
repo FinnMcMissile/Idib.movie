@@ -9,7 +9,8 @@ var moviesGallery = {
     currMovie : 0,
     showMovie : function(movie) {},
     restart : function() {},
-    noMore : function() {}
+    noMore : function() {},
+    showLoading: function(show) {}
 };
 
 ( moviesGallery => {
@@ -35,6 +36,13 @@ var moviesGallery = {
 
     moviesGallery.noMore = function() {
         $("#moreButton").hide();
+    }
+
+    moviesGallery.showLoading = function(show) {
+        if (show) 
+            $("#loading").show(); 
+        else 
+            $("#loading").hide();
     }
 
     moviesGallery.restart = function() {
@@ -66,11 +74,14 @@ var moviesGallery = {
             });
             if (snap.numChildren() == moviesGallery.PAGESIZE + 1)
                 loadNextPage(lastLoaded);
+            else
+                moviesGallery.showLoading(false);
         });
     }
 
     var database = firebase.database();
     const movieRef = database.ref().child('movies').orderByChild('indexTitle').limitToFirst(moviesGallery.PAGESIZE);
+    moviesGallery.showLoading(true);
     movieRef.once("value", snap => {
         var lastLoaded = null;
         snap.forEach( movieSnap => {
