@@ -9,15 +9,23 @@
             <h1>Tutti i film</h1>
             <div class="content-wrapper">
                 <div class="side-bar">
-                    <p>cerca</p>
-                </div>
-                <div class="main-content" id="moviesList">
-                    <div class="panels-row">
-                        <div class="panel"></div>
-                        <div class="panel"></div>
-                        <div class="panel"></div>
-                        <div class="panel"></div>
+                    <div class="side-panel">
+                        Ordina per
+                        <select id="orderBy">
+                            <option value="yearDesc">Più recente</option>
+                            <option value="yearAsc">Meno recente</option>
+                            <option value="yearAsc">Titolo</option>
+                        </select>
                     </div>
+                    <div class="side-panel">
+                        Cerca
+                        <input type="text" name="filter" id="filter"><button onclick="movies.search($('#filter').val())">Vai!</button>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="gallery-content" id="moviesGallery">
+                    </div>
+                    <div class="more-button" id="moreButton" onclick="movies.showMore()">Mostra altro</div>
                 </div>
             </div>
         </div>
@@ -29,18 +37,21 @@
         <script type="text/javascript" src="utils.js"></script>		
         <script type="text/javascript" src="movies.js"></script>		
 
-<script id="movie-row-template" type="text/template">
+<script id="gallery-row-template" type="text/template">
     <div class="panels-row"></div>
 </script>	
         
 <script id="movie-template" type="text/template">
     <div class="panel">
-        <div class="mini-poster">
+        <div class="gallery-poster">
             <img src="{poster}" alt="{alt}">
         </div>
-        <div class="mini-title">
-             <div class="boxed-text">
+        <div class="gallery-title">
+             <div class="boxed-text bold">
                 {title}
+            </div>
+            <div class="boxed-text mt-2">
+                {year}
             </div>
         </div>
     </div>

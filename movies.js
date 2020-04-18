@@ -1,47 +1,108 @@
-var moviesList = {
-  };
-  
-( moviesList => {
-    $("#moviesList")[0].innerHTML = "";
+var movies = {
+    showMore : function() {},
+    search : function(filter) {}
+};
 
-    function showPage(moviesRef) {
-        var currMovie = 0;
+var moviesGallery = {
+    PAGESIZE : 12,
+    ROWSIZE: 4, 
+    currMovie : 0,
+    showMovie : function(movie) {},
+    restart : function() {},
+    noMore : function() {}
+};
+
+( moviesGallery => {
+
+    moviesGallery.showMovie = function(movie) {
+        if (moviesGallery.currMovie % moviesGallery.ROWSIZE == 0) {
+            var galleryRow = $($('#gallery-row-template').html());
+            currRowId = "gallery-row-" + (moviesGallery.currMovie / moviesGallery.ROWSIZE);
+            galleryRow.attr("id", currRowId);
+            $("#moviesGallery").append(galleryRow);
+        }
+        $("#" + currRowId).append(
+            utils.render($('#movie-template').html(), {
+                title: movie.indexTitle, 
+                year: movie.year ? movie.year : "", 
+                poster: movie.poster ? utils.remoteURL(movie.poster.name) : "images/no-movie-poster.jpg",
+                alt: movie.poster ? movie.poster.description : "nessuna immagine"
+            }));
+        moviesGallery.currMovie++;
+        if (moviesGallery.currMovie >= moviesGallery.PAGESIZE)
+            $("#moreButton").show();
+    }
+
+    moviesGallery.noMore = function() {
+        $("#moreButton").hide();
+    }
+
+    moviesGallery.restart = function() {
         currRowId = null;
-        moviesRef.on("child_added", snap => {
-            var movie = snap.val();
-            if (currMovie % 4 == 0) {
-                var panelRow = $($('#movie-row-template').html());
-                currRowId = "panel-row-" + (currMovie / 4);
-                panelRow.attr("id", currRowId);
-                $("#moviesList").append(panelRow);
-            }
-            $("#" + currRowId).append(
-                utils.render($('#movie-template').html(), {
-                    title: movie.italianTitle ? movie.italianTitle : movie.originalTitle, 
-                    poster: movie.poster ? utils.remoteURL(movie.poster.name) : "images/no-movie-poster.jpg",
-                    alt: movie.poster ? movie.poster.description : "nessuna immagine"
-                }));
-            currMovie++;
+        moviesGallery.currMovie = 0;
+        $("#moviesGallery")[0].innerHTML = "";
+        $("#moreButton").hide();
+    }
+
+    moviesGallery.restart();
+
+})(moviesGallery);
+  
+( movies => {
+
+    var fullMoviesList = [];
+    var moviesList = fullMoviesList;
+
+    function loadNextPage(lastLoaded) {
+        const moviesRef = database.ref().child('movies').orderByChild('indexTitle').startAt(lastLoaded).limitToFirst(moviesGallery.PAGESIZE + 1);
+        moviesRef.once("value", snap => {
+            snap.forEach( movieSnap => {
+                var movie = movieSnap.val();
+                if (movie.indexTitle == lastLoaded)
+                    return;
+                movie.cast = null;
+                moviesList.push(movie);                    
+                lastLoaded = movie.indexTitle;
+            });
+            if (snap.numChildren() == moviesGallery.PAGESIZE + 1)
+                loadNextPage(lastLoaded);
         });
     }
 
     var database = firebase.database();
-    const movieRef = database.ref().child('movies').orderByChild('italianTitle').limitToFirst(12);
-    showPage(movieRef);
+    const movieRef = database.ref().child('movies').orderByChild('indexTitle').limitToFirst(moviesGallery.PAGESIZE);
+    movieRef.once("value", snap => {
+        var lastLoaded = null;
+        snap.forEach( movieSnap => {
+            var movie = movieSnap.val();
+            movie.cast = null;
+            moviesList.push(movie);
+            moviesGallery.showMovie(movie);
+            lastLoaded = movie.indexTitle;
+        });
+        loadNextPage(lastLoaded);
+    })
   
-    // setTimeout(() => {
-    //     var tpl = $('#movie-template');
+    movies.showMore = function() {
+        var startMovie = moviesGallery.currMovie; 
+        for (m = startMovie; m < startMovie + moviesGallery.PAGESIZE; m++) {
+            if (m >= moviesList.length) {
+                moviesGallery.noMore();
+                break;
+            }
+            moviesGallery.showMovie(moviesList[m]);
+        }
+    }
 
-    //     var currRowId = null;
-    //     for (i = 0; i < 12; i++) {
-    //         if (i % 4 == 0) {
-    //             var panelRow = $($('#movie-row-template').html());
-    //             currRowId = "panel-row-" + (i / 4);
-    //             panelRow.attr("id", currRowId);
-    //             $("#moviesList").append(panelRow);
-    //         }
-    //         $("#" + currRowId).append($('#movie-template').html());
-    //     }
-    // },500)
+    movies.search = function(filter) {
+        var a = filter;
+        if (filter == "") return;
 
-})(moviesList);
+        moviesList = fullMoviesList.filter( movie => {
+            return movie.indexTitle.toUpperCase().includes(filter.toUpperCase()); 
+        }); 
+        moviesGallery.restart();
+        movies.showMore();
+    } 
+    
+})(movies);
