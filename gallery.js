@@ -27,6 +27,7 @@ class Gallery {
         this.currItem = 0;
         var currRowId = null;
         $(this.props.idGalleryHost).append(galleryTemplate);
+        $("#gallery-loading").hide();
         $("#galleryMoreButton").click(() => { this.showPage(); });
     };
 

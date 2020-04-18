@@ -1,6 +1,7 @@
 var dubbers = {
   search : function(filter) {},
-  clearFilter: function() {}
+  clearFilter: function() {},
+  PAGESIZE: 500
 };
 
 ( dubbers => {
@@ -26,7 +27,7 @@ var dubbers = {
   }
 
   function loadNextPage(lastLoaded) {
-    const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').startAt(lastLoaded).limitToFirst(dubbersGallery.PAGESIZE + 1);
+    const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').startAt(lastLoaded).limitToFirst(dubbers.PAGESIZE);
     dubbersRef.once("value", snap => {
         snap.forEach( dubberSnap => {
             var dubber = dubberSnap.val();
@@ -36,11 +37,12 @@ var dubbers = {
             fullDubbersList.push(dubber);                    
             lastLoaded = dubber.indexName;
         });
-        if (snap.numChildren() == dubbersGallery.PAGESIZE + 1)
+        if (snap.numChildren() == dubbers.PAGESIZE)
             loadNextPage(lastLoaded);
         else {
           dubbersGallery.showLoading(false);
-          console.log("dubbers: " + fullDubbersList.length)
+          sessionStorage.fullDubbersList = JSON.stringify(fullDubbersList);
+          console.log("Stored a cached list of dubbers: " + fullDubbersList.length);
         }
     });
   }
@@ -58,19 +60,28 @@ var dubbers = {
       }
   });
 
-  var database = firebase.database();
-  const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').limitToFirst(dubbersGallery.PAGESIZE);
-  dubbersGallery.showLoading(true);
-  dubbersRef.once("value", snap => {
-      var lastLoaded = null;
-      snap.forEach( dubberSnap => {
-          var dubber = dubberSnap.val();
-          dubber.works = null;
-          fullDubbersList.push(dubber);
-          lastLoaded = dubber.indexName;
-      });
-      dubbersGallery.refresh(dubbersList);
-      loadNextPage(lastLoaded);
-  })
+  if (sessionStorage.fullDubbersList) {
+    fullDubbersList = JSON.parse(sessionStorage.fullDubbersList);
+    dubbersList = fullDubbersList;
+    console.log("Using a cached list of dubbers: " + fullDubbersList.length);
+    dubbersGallery.refresh(dubbersList);
+  }
+  else {
+    var database = firebase.database();
+    const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').limitToFirst(dubbersGallery.PAGESIZE);
+    dubbersGallery.showLoading(true);
+    dubbersRef.once("value", snap => {
+        var lastLoaded = null;
+        snap.forEach( dubberSnap => {
+            var dubber = dubberSnap.val();
+            dubber.works = null;
+            fullDubbersList.push(dubber);
+            lastLoaded = dubber.indexName;
+        });
+        dubbersGallery.refresh(dubbersList);
+        loadNextPage(lastLoaded);
+    })
+  }
+
 
 })(dubbers);
