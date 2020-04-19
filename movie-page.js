@@ -16,8 +16,20 @@ var moviePage = {
             director: movie.director,
             year: movie.year,
             poster: movie.poster ? utils.remoteURL(movie.poster.name) : "images/no-movie-poster.jpg",
-            posterDescription: movie.poster ? movie.poster.description : "Locandina del film"
-        })
+            posterDescription: movie.poster ? movie.poster.description : "Locandina del film",
+            country: movie.country,
+            originalTitle: movie.originalTitle,
+            italianTitle: movie.italianTitle,
+            production: movie.country + " " + movie.year
+        });
+
+        movie.cast.forEach(member => {
+            $("#movieCast").append(utils.render($('#movie-cast-member-template').html(), {
+                dubber: member.dubber,
+                character: member.character,
+                actor: member.actor
+            }));
+        });
     });
 
 })(moviePage);

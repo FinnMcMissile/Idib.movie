@@ -17,11 +17,47 @@
                 </div>
                 <div class="ml-10 movie-info">
                     <h1 id="title"></h1>
-                    <p id="year"></p>
-                    <p id="director"></p>
+                    <h2><span id="year"></span></h2>
+                    <p>Regia di: <span id="director"></span></p>
+                </div>
+            </div>
+            <div class="movie-body">
+                <div class="movie-details">
+                    <h3>Informazioni sul film</h3>
+                    <div class="movie-detail">
+                        <strong>Titolo Italiano</strong><br>
+                        <span id="italianTitle"></span>
+                    </div>
+                    <div class="movie-detail">
+                        <strong>Titolo Originale</strong><br>
+                        <span id="originalTitle"></span>
+                    </div>
+                    <div class="movie-detail">
+                        <strong>Produzione</strong><br>
+                        <span id="production"></span>
+                    </div>
+                </div>
+                <div class="movie-cast">
+                    <h3>Con le voci di:</h3>
+                    <div id="movieCast"></div>
                 </div>
             </div>
         </div>
+
+    <script id="movie-cast-member-template" type="text/template">
+        <div class="movie-cast-member">
+            <div class="movie-cast-member-photo">
+                <img src="images/no-dubber-photo.jpg" alt="">
+            </div>
+            <div class="movie-cast-member-dubber">
+                <strong>{dubber}</strong><br>
+                {character}
+            </div>
+            <div class="movie-cast-member-actor">
+                {actor}
+            </div>
+        </div>
+    </script>	
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="/__/firebase/7.13.0/firebase-app.js"></script>  

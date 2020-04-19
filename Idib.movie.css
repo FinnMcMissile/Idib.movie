@@ -107,3 +107,12 @@ body {
     display: flex;
     flex-direction: row;
 }
+
+.bulleted {
+    margin-left: 0.5em;
+}
+
+.bulleted::before {  
+    content: "\2022";
+    padding-right: 0.5em;
+}
