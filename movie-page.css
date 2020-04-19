@@ -1,0 +1,48 @@
+.backdrop {
+    /* background: url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/xN3xKxD6TI87RuGZXsiF1fMjN6Z.jpg); */
+    /* background-image: url(https://www.antoniogenna.net/doppiaggio/film/bigfish1.jpg); */
+    /* background-image: linear-gradient(to right, rgba(18.82%, 14.90%, 12.94%, 1.00) 150px, rgba(24.71%, 22.35%, 20.78%, 0.84) 100%); */
+    background-image: linear-gradient(to right, rgba(22, 42, 42, 0.84) 0, rgba(2, 172, 172, 0.64) 100%);
+    background-size: cover;
+    /* border-bottom: 1px solid rgba(21.76%, 18.63%, 16.86%, 1.00); */
+    /* background-position: right -200px top; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background: transparent; */
+}
+
+.movie-header {
+    height: 400px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 1em 2em 1em 2em;
+}
+
+.movie-poster {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-poster-image {
+    align-self: center;
+    flex: auto;
+    width: 100%;    
+}
+
+.movie-poster-description {
+    align-self: center;
+}
+
+.movie-info {
+    width: 70%;
+}
+
+.movie-poster img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin: auto;
+    display: block;
+}

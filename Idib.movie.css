@@ -32,6 +32,10 @@ body {
     margin-top: 2px;
 }
 
+.mt-5 {
+    margin-top: 5px;
+}
+
 .mr-2 {
     margin-right: 2px;
 }
@@ -40,6 +44,13 @@ body {
     margin-left: 5px;
 }
 
+.ml-10 {
+    margin-left: 10px;
+}
+
+.link {
+    cursor: pointer;
+}
 
 /* SIDE BAR */
 
