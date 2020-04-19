@@ -50,23 +50,28 @@
                 </div>
             </div>
         </div>
-
-    <script id="movie-cast-member-template" type="text/template">
-        <div class="movie-cast-member">
-            <div class="movie-cast-member-dubber">
-                <div class="movie-cast-member-dubber-photo">
-                    <img src="{photo}" alt="">
-                </div>
-                <div class="movie-cast-member-dubber-name">
-                    <strong>{dubber}</strong><br>
-                    {character}
-                </div>
-            </div>
-            <div class="movie-cast-member-actor">
-                {actor}
-            </div>
+        <div class="footer">
+            Le informazioni e le foto qui presentate provengono dal sito <strong>Il mondo dei doppiatori</strong> &copy; 2001 e anni successivi <strong>Antonio Genna</strong>.<br>
+            Tutti i diritti riservati. <a id="source" href="" target="blank">Visita la pagina originale</a>
         </div>
-    </script>	
+
+        <!-- TEMPLATE -->
+        <script id="movie-cast-member-template" type="text/template">
+            <div class="movie-cast-member">
+                <div class="movie-cast-member-dubber">
+                    <div class="movie-cast-member-dubber-photo {link}" onclick="moviePage.openDubber('{dubberSource}')">
+                        <img src="{photo}" alt="">
+                    </div>
+                    <div class="movie-cast-member-dubber-name">
+                        <strong class="{link}" onclick="moviePage.openDubber('{dubberSource}')">{dubber}</strong><br>
+                        {character}
+                    </div>
+                </div>
+                <div class="movie-cast-member-actor">
+                    {actor}
+                </div>
+            </div>
+        </script>	
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="/__/firebase/7.13.0/firebase-app.js"></script>  
