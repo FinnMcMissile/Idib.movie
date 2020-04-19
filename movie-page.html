@@ -38,7 +38,14 @@
                     </div>
                 </div>
                 <div class="movie-cast">
-                    <h3>Con le voci di:</h3>
+                    <div class="movie-cast-title">
+                        <div class="movie-cast-title-dubber">
+                            <h3>Doppiatori</h3>
+                        </div>
+                        <div class="movie-cast-title-actor">
+                            <h4>Interpreti originali</h4>
+                        </div>
+                    </div>
                     <div id="movieCast"></div>
                 </div>
             </div>
@@ -46,12 +53,14 @@
 
     <script id="movie-cast-member-template" type="text/template">
         <div class="movie-cast-member">
-            <div class="movie-cast-member-photo">
-                <img src="images/no-dubber-photo.jpg" alt="">
-            </div>
             <div class="movie-cast-member-dubber">
-                <strong>{dubber}</strong><br>
-                {character}
+                <div class="movie-cast-member-dubber-photo">
+                    <img src="{photo}" alt="">
+                </div>
+                <div class="movie-cast-member-dubber-name">
+                    <strong>{dubber}</strong><br>
+                    {character}
+                </div>
             </div>
             <div class="movie-cast-member-actor">
                 {actor}

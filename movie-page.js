@@ -25,9 +25,10 @@ var moviePage = {
 
         movie.cast.forEach(member => {
             $("#movieCast").append(utils.render($('#movie-cast-member-template').html(), {
-                dubber: member.dubber,
+                dubber: member.dubber && member.dubber.name ? member.dubber.name : "",
+                photo: member.dubber && member.dubber.photo ? utils.remoteURL(member.dubber.photo) : "images/no-dubber-photo.jpg",
                 character: member.character,
-                actor: member.actor
+                actor: member.actor ? member.actor : ""
             }));
         });
     });
