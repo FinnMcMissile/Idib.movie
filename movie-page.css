@@ -1,0 +1,123 @@
+.backdrop {
+    /* background: url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/xN3xKxD6TI87RuGZXsiF1fMjN6Z.jpg); */
+    /* background-image: url(https://www.antoniogenna.net/doppiaggio/film/bigfish1.jpg); */
+    /* background-image: linear-gradient(to right, rgba(18.82%, 14.90%, 12.94%, 1.00) 150px, rgba(24.71%, 22.35%, 20.78%, 0.84) 100%); */
+    background-image: linear-gradient(to right, rgba(22, 42, 42, 0.84) 0, rgba(2, 172, 172, 0.64) 100%);
+    background-size: cover;
+    /* border-bottom: 1px solid rgba(21.76%, 18.63%, 16.86%, 1.00); */
+    /* background-position: right -200px top; */
+    background-repeat: no-repeat;
+    /* background: transparent; */
+}
+
+.movie-header {
+    height: 400px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 1em 2em 1em 2em;
+}
+
+
+.movie-poster {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-poster-image {
+    align-self: center;
+    flex: auto;
+    width: 100%;    
+}
+
+.movie-poster-description {
+    align-self: center;
+}
+
+.movie-info {
+    width: 70%;
+}
+
+.movie-info h1 {
+    margin-top: 0.1em;
+    margin-bottom: 0;
+}
+
+.movie-info h2 {
+    margin-top: 0.1em;
+    margin-bottom: 0;
+}
+
+.movie-poster img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin: auto;
+    display: block;
+}
+
+.movie-body {
+    display: flex;
+    flex-direction: row;
+    padding-top: 1em;
+}
+
+.movie-details {
+    width:30%;
+}
+
+.movie-detail {
+    margin-top: 0.5em;
+}
+
+.movie-cast {
+    width: 70%;
+    border-left: 1px solid lightgray;
+    padding-left: 1em;
+}
+
+.movie-cast-title {
+    display: flex;
+    flex-direction: row;
+}
+.movie-cast-title-dubber {
+    width: 70%;
+}
+
+.movie-cast-title-actor {
+    width: 30%;
+}
+
+.movie-cast-member {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+    height: 3.5em;
+}
+
+.movie-cast-member-dubber-photo {
+    width: 3em;
+    padding-right: 1em;
+}
+
+.movie-cast-member-dubber-photo img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+    display: block;
+}
+
+.movie-cast-member-dubber {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+}
+
+.movie-cast-member-dubber-name {
+}
+
+.movie-cast-member-actor {
+    width: 30%;
+}

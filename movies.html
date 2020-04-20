@@ -44,27 +44,32 @@
                 </div>
             </div>
         </div>
+        <div class="footer">
+            Le informazioni e le foto qui presentate provengono dal sito <strong>Il mondo dei doppiatori</strong> &copy; 2001 e anni successivi <strong>Antonio Genna</strong>.<br>
+            Tutti i diritti riservati. <a id="source" href="https://www.antoniogenna.net/doppiaggio/film.htm" target="blank">Visita la pagina originale</a>
+        </div>
+		<!-- TEMPLATE -->
+        <script id="movie-template" type="text/template">
+            <div class="gallery-item">
+                <div class="gallery-item-photo link" onclick="movies.openMovie('{key}')">
+                    <img src="{poster}" alt="{alt}" style="{objectFit}">
+                </div>
+                <div class="gallery-title">
+                     <div class="boxed-text bold link" onclick="movies.openMovie('{key}')">
+                        {title}
+                    </div>
+                    <div class="boxed-text mt-2">
+                        {year}
+                    </div>
+                </div>
+            </div>
+        </script>	
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="/__/firebase/7.13.0/firebase-app.js"></script>
 		<script src="/__/firebase/7.12.0/firebase-database.js"></script>
-        <script src="/__/firebase/init.js"></script>
-        <script type="text/javascript" src="utils.js"></script>
-        <script type="text/javascript" src="gallery.js"></script>
-        <script type="text/javascript" src="movies.js"></script>
-		<script type="text/template" id="movie-template">
-			<div class="gallery-item">
-				<div class="gallery-item-photo">
-					<img src="{poster}" alt="{alt}">
-				</div>
-				<div class="gallery-title">
-					 <div class="boxed-text bold">
-						{title}
-					</div>
-					<div class="boxed-text mt-2">
-						{year}
-					</div>
-				</div>
-			</div>
-		</script>
+        <script src="/__/firebase/init.js"></script>      
+        <script type="text/javascript" src="utils.js"></script>		
+        <script type="text/javascript" src="gallery.js"></script>		
+        <script type="text/javascript" src="movies.js"></script>		
     </body>
 </html>

@@ -2,14 +2,28 @@ body{
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container{
-	max-width: 1000px;
-	margin: auto;
+h1 {
+    margin-block-start: 0.3em;
 }
 
-.content-wrapper{
-	display: flex;
-	flex-direction: row;
+.container {
+    max-width: 1000px;
+    margin: auto;
+    min-height: calc(100vh - 4.5em);
+}
+
+.footer {
+    height: 3em;
+    font-size: smaller;
+    text-align: center;
+    padding-top: 0.5em;
+    margin-top: 0.5em;
+    border-top: 1px lightgray solid;
+}
+ 
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
 }
 
 .main-content{
@@ -32,16 +46,33 @@ body{
 	margin-top: 2px;
 }
 
-.mr-2{
-	margin-right: 2px;
+.mt-5 {
+    margin-top: 5px;
+}
+
+.mr-2 {
+    margin-right: 2px;
 }
 
 .ml-5{
 	margin-left: 5px;
 }
 
+.ml-10 {
+    margin-left: 10px;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.missing-link {
+    color: darkgrey;
+    font-style: italic;
+}
+
 /*Side bar*/
-.side-bar{
+.side-bar {
     width: 20%;
     display: flex;
     flex-direction: column;
@@ -93,4 +124,13 @@ body{
 .side-panel-row{
     display: flex;
     flex-direction: row;
+}
+
+.bulleted {
+    margin-left: 0.5em;
+}
+
+.bulleted::before {  
+    content: "\2022";
+    padding-right: 0.5em;
 }

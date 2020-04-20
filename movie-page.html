@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<title>Italians dub it better</title>
+		<link rel="icon" href="Immagini/.ico">
+		<link rel="stylesheet" href="Idib.movie.css">
+		<link rel="stylesheet" href="movie-page.css">
+	</head>
+	<body>
+        <div class="container">
+            <div class="movie-header backdrop">
+                <div class="movie-poster">
+                    <div class="movie-poster-image">
+                        <img id="poster" src="" alt="">
+                    </div>
+                    <div id="posterDescription" class="movie-poster-description mt-5">
+                    </div>
+                </div>
+                <div class="ml-10 movie-info">
+                    <h1 id="title"></h1>
+                    <h2><span id="year"></span></h2>
+                    <p>Regia di: <span id="director"></span></p>
+                </div>
+            </div>
+            <div class="movie-body">
+                <div class="movie-details">
+                    <h3>Informazioni sul film</h3>
+                    <div class="movie-detail">
+                        <strong>Titolo Italiano</strong><br>
+                        <span id="italianTitle"></span>
+                    </div>
+                    <div class="movie-detail">
+                        <strong>Titolo Originale</strong><br>
+                        <span id="originalTitle"></span>
+                    </div>
+                    <div class="movie-detail">
+                        <strong>Produzione</strong><br>
+                        <span id="production"></span>
+                    </div>
+                </div>
+                <div class="movie-cast">
+                    <div class="movie-cast-title">
+                        <div class="movie-cast-title-dubber">
+                            <h3>Doppiatori</h3>
+                        </div>
+                        <div class="movie-cast-title-actor">
+                            <h4>Interpreti originali</h4>
+                        </div>
+                    </div>
+                    <div id="movieCast"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            Le informazioni e le foto qui presentate provengono dal sito <strong>Il mondo dei doppiatori</strong> &copy; 2001 e anni successivi <strong>Antonio Genna</strong>.<br>
+            Tutti i diritti riservati. <a id="source" href="" target="blank">Visita la pagina originale</a>
+        </div>
+
+        <!-- TEMPLATE -->
+        <script id="movie-cast-member-template" type="text/template">
+            <div class="movie-cast-member">
+                <div class="movie-cast-member-dubber">
+                    <div class="movie-cast-member-dubber-photo {link}" onclick="moviePage.openDubber('{dubberSource}')">
+                        <img src="{photo}" alt="">
+                    </div>
+                    <div class="movie-cast-member-dubber-name">
+                        <strong class="{link}" onclick="moviePage.openDubber('{dubberSource}')">{dubber}</strong><br>
+                        {character}
+                    </div>
+                </div>
+                <div class="movie-cast-member-actor">
+                    {actor}
+                </div>
+            </div>
+        </script>	
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="/__/firebase/7.13.0/firebase-app.js"></script>  
+		<script src="/__/firebase/7.12.0/firebase-database.js"></script>
+        <script src="/__/firebase/init.js"></script>      
+        <script type="text/javascript" src="utils.js"></script>		
+        <script type="text/javascript" src="movie-page.js"></script>		
+    </body>
+</html>        
+    

@@ -1,0 +1,105 @@
+
+  
+    .k-tooltip.custom_theme {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .custom_theme .k-callout-n {
+      border-bottom-color: #ffffff;
+    }
+
+    .custom_theme .k-callout-e {
+      border-left-color: #ffffff;
+    }
+
+    .custom_theme .k-callout-w {
+      border-right-color: #ffffff;
+    }
+
+    .custom_theme .k-callout-s {
+      border-top-color: #ffffff;
+    }
+
+    #shortcut_bar_scroller.scroller_wrap, div.single_column_wrapper {
+      border-bottom: 1px solid rgba(21.76%, 18.63%, 16.86%, 1.00);
+    }
+
+    
+      div.header.large.first {
+        border-bottom: 1px solid rgba(21.76%, 18.63%, 16.86%, 1.00);
+        background-position: right -200px top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/xN3xKxD6TI87RuGZXsiF1fMjN6Z.jpg');
+      }
+    
+
+    section.inner_content section.header div.facts span.certification {
+      border: 1px solid rgba(100.00%, 100.00%, 100.00%, 0.60);
+      color: rgba(100.00%, 100.00%, 100.00%, 0.60);
+    }
+
+    
+
+    section div.header.first div.single_column {
+      background: transparent;
+    }
+
+    section.inner_content section.header {
+      color: #ffffff;
+    }
+
+    section.inner_content a, section.media_panel div.menu ul li.active a {
+      color: #000;
+    }
+
+    section.inner_content a:hover, section.media_panel div.menu ul li.active a:hover {
+      color: #302621;
+    }
+
+    section.inner_content section.header ul.actions li.tooltip a, section.inner_content section.header ul.actions li.video a {
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    p.new_button a, section.media_panel div.menu ul li.view_all a, div.episode div.info span.episode_number, section.review div.review_container div.inner_content div.teaser p a {
+      color: #302621;
+    }
+
+    p.rounded.new_button a:hover {
+      color: #ffffff;
+    }
+
+    section.media_panel div.menu ul li.active, section.inner_content ul.shortcut_bar li.selected, section.inner_content ul.shortcut_bar li:hover {
+      border-color: #302621;
+    }
+
+    section.content_score div.content_score {
+      background-color: rgba(18.82%, 14.90%, 12.94%, 0.60);
+    }
+
+    div.settings_panel h3.background_color {
+      background-color: #302621;
+    }
+
+    
+      section.inner_content div.custom_bg {
+        background-image: linear-gradient(to right, rgba(18.82%, 14.90%, 12.94%, 1.00) 150px, rgba(24.71%, 22.35%, 20.78%, 0.84) 100%);
+      }
+
+      section.inner_content.no_backdrop.poster div.custom_bg {
+        background-image: linear-gradient(to right, rgba(18.82%, 14.90%, 12.94%, 0.84) 0, rgba(24.71%, 22.35%, 20.78%, 0.64) 100%);
+      }
+    
+
+    section.inner_content section.header a, section.inner_content section.header div.title a {
+      color: #ffffff;
+    }
+
+    p.new_button.rounded, section.content_score div.content_score div, div.leaderboard div.histogram div.bar span {
+      border-color: #302621;
+      background-color: #302621;
+    }
+
+  
