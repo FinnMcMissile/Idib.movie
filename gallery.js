@@ -22,7 +22,7 @@ class Gallery {
     */
     constructor (props) {
         this.props = props;
-        this.PAGESIZE = 12;
+        this.PAGESIZE = 16;
         this.ROWSIZE = 4;
         this.currItem = 0;
         var currRowId = null;

@@ -1,55 +1,53 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+body{
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container {
-    max-width: 1000px;
-    margin: auto;
+.container{
+	max-width: 1000px;
+	margin: auto;
 }
 
-.content-wrapper {
-    display: flex;
-    flex-direction: row;
+.content-wrapper{
+	display: flex;
+	flex-direction: row;
 }
 
-.main-content {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
+.main-content{
+	width: 80%;
+	display: flex;
+	flex-direction: column;
 }
 
-.boxed-text {
-    word-break: break-word;
-    max-height: 4.1em;
-    overflow: hidden;
+.boxed-text{
+	word-break: break-word;
+	max-height: 4.1em;
+	overflow: hidden;
 }
 
-.bold {
-    font-weight: 700;
+.bold{
+	font-weight: 700;
 }
 
-.mt-2 {
-    margin-top: 2px;
+.mt-2{
+	margin-top: 2px;
 }
 
-.mr-2 {
-    margin-right: 2px;
+.mr-2{
+	margin-right: 2px;
 }
 
-.ml-5 {
-    margin-left: 5px;
+.ml-5{
+	margin-left: 5px;
 }
 
-
-/* SIDE BAR */
-
-.side-bar {
+/*Side bar*/
+.side-bar{
     width: 20%;
     display: flex;
     flex-direction: column;
 }
 
-.side-panel {
+.side-panel{
     height: 150px;
     padding: 0 1em;
     margin: 0.5em 0.5em 0 0;
@@ -58,7 +56,7 @@ body {
     box-sizing: border-box;
 }
 
-.side-panel input, .side-panel select, .side-panel button {
+.side-panel input, .side-panel select, .side-panel button{
     height: 1.8em;
     font-size: 1em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -66,33 +64,33 @@ body {
     border: solid 1px #999;
 }
 
-.side-panel input, .side-panel select {
+.side-panel input, .side-panel select{
     width: 100%; 
 }
 
-.side-panel input {
+.side-panel input{
     padding: 0 0 5px 5px;
     box-sizing: border-box;
 }
 
-.side-panel button {
+.side-panel button{
     background-color: white;
 }
 
-.side-panel button img {
+.side-panel button img{
     height: 100%;
     max-width: 100%;
 }
 
-.side-panel-title {
+.side-panel-title{
     height: 25%;
 }
 
-.side-panel-content {
+.side-panel-content{
     height: 75%;
 }
 
-.side-panel-row {
+.side-panel-row{
     display: flex;
     flex-direction: row;
 }
