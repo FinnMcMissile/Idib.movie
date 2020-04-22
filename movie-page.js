@@ -11,13 +11,7 @@ var moviePage = {
         window.location = "dubber-page.html?dubberSource=" + dubberSource;
     }
 
-    var movieKey  = utils.extractParamFromQueryString(location.search.substring(1), "movieKey");    
-    console.log("opened movie "+ movieKey);
-
-    var database = firebase.database();
-
-    movieRef = database.ref().child(`movies/${movieKey}`);
-    movieRef.once("value", snap => {
+    showMovie = function(snap) {
         movie = snap.val();
         utils.showFormData({
             title: movie.italianTitle,
@@ -42,6 +36,27 @@ var moviePage = {
                 dubberSource: (member.dubber && member.dubber.source) ? member.dubber.source : "",
             }));
         });
-    });
+    }
+
+    var movieKey  = utils.extractParamFromQueryString(location.search.substring(1), "movieKey");    
+    console.log("opened movie "+ movieKey);
+
+    var movieSource  = utils.extractParamFromQueryString(location.search.substring(1), "movieSource");    
+    console.log("opened movie "+ movieSource);
+
+    var database = firebase.database();
+
+    if (movieKey != null) {
+        database.ref().child(`movies/${movieKey}`).once("value", snap => {
+            showMovie(snap);
+        });
+    } else {
+        database.ref("movies").orderByChild("source").equalTo(movieSource).once("value", snap => {
+            snap.forEach(movieSnap => {
+                showMovie(movieSnap);
+            });
+        });
+    }
+
 
 })(moviePage);

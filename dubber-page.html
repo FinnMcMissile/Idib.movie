@@ -7,16 +7,38 @@
 	</head>
 	<body>
         <div class="container">
-            <div class="dubber-header dubber-backdrop">
-                <div class="dubber-photo">
-                    <div class="dubber-photo-image">
-                        <img id="photo" src="" alt="">
-                    </div>
-                    <div id="photoDescription" class="dubber-photo-description mt-5">
+            <div class="content-wrapper">
+                <div class="sidebar">
+                    <div class="dubber-photo">
+                        <div class="dubber-photo-image">
+                            <img id="photo" src="" alt="">
+                        </div>
+                        <div id="photoDescription" class="dubber-photo-description mt-5">
+                        </div>
                     </div>
                 </div>
-                <div class="ml-10 dubber-info">
-                    <h1 id="name"></h1>
+                <div class="main-content">
+                    <div class="dubber-info">
+                        <h1 id="name"></h1>
+                    </div>
+                    <div class="dubber-mini-bio">
+                        Nessuna informazione disponibile
+                    </div>
+                    <div class="dubber-works">
+                        <h2>Film</h2>
+                        <div class="dubber-works-title">
+                            <div class="dubber-works-title-movie">
+                                <h3>Titolo</h3>
+                            </div>
+                            <div class="dubber-works-title-character">
+                                <h4>Personaggio</h4>
+                            </div>
+                            <div class="dubber-works-title-actor">
+                                <h4>Interprete originale</h4>
+                            </div>
+                        </div>
+                        <div id="dubberWorks"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,6 +46,26 @@
             Le informazioni e le foto qui presentate provengono dal sito <strong>Il mondo dei doppiatori</strong> &copy; 2001 e anni successivi <strong>Antonio Genna</strong>.<br>
             Tutti i diritti riservati. <a id="source" href="" target="blank">Visita la pagina originale</a>
         </div>
+
+        <!-- TEMPLATE -->
+        <script id="dubber-work-template" type="text/template">
+            <div class="dubber-work">
+                <div class="dubber-work-movie">
+                    <div class="dubber-work-movie-poster {link}" onclick="dubberPage.openMovie('{movieSource}')">
+                        <img src="{photo}" alt="">
+                    </div>
+                    <div class="dubber-work-movie-title">
+                        <strong class="{link}" onclick="dubberPage.openMovie('{movieSource}')">{movie}</strong>
+                    </div>
+                </div>
+                <div class="dubber-work-movie-character">
+                    {character}
+                </div>
+                <div class="dubber-work-movie-actor">
+                    {actor}
+                </div>
+            </div>
+        </script>	
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="/__/firebase/7.13.0/firebase-app.js"></script>  
