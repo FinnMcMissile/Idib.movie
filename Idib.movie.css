@@ -7,6 +7,11 @@ h1 {
     margin-block-start: 0.3em;
 }
 
+.h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
 .container {
     max-width: 1000px;
     margin: auto;
@@ -135,3 +140,4 @@ h1 {
     content: "\2022";
     padding-right: 0.5em;
 }
+

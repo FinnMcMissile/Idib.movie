@@ -3,6 +3,7 @@
 		<title>Italians dub it better</title>
 		<link rel="icon" href="Immagini/.ico">
 		<link rel="stylesheet" href="Idib.movie.css">
+		<link rel="stylesheet" href="tabber.css">
 		<link rel="stylesheet" href="dubber-page.css">
 	</head>
 	<body>
@@ -25,19 +26,40 @@
                         Nessuna informazione disponibile
                     </div>
                     <div class="dubber-works">
-                        <h2>Film</h2>
-                        <div class="dubber-works-title">
-                            <div class="dubber-works-title-movie">
-                                <h3>Titolo</h3>
+                        <ul class="tabber">
+                            <li class="tab-link current h2" data-tab="tab-dubbings">Doppiaggio</li>
+                            <li class="tab-link h2" data-tab="tab-others">Altre Attività</li>
+                        </ul>      
+                        <div id="tab-dubbings" class="tab-content current">
+                            <h3>Film Cinema</h3>
+                            <div class="dubber-works-title">
+                                <div class="dubber-works-title-movie">
+                                    <h4>Titolo</h4>
+                                </div>
+                                <div class="dubber-works-title-character">
+                                    <h4>Personaggio</h4>
+                                </div>
+                                <div class="dubber-works-title-actor">
+                                    <h4>Interprete originale</h4>
+                                </div>
                             </div>
-                            <div class="dubber-works-title-character">
-                                <h4>Personaggio</h4>
-                            </div>
-                            <div class="dubber-works-title-actor">
-                                <h4>Interprete originale</h4>
+                            <div class="dubber-works-list" id="dubberWorks"></div>
+                            <h3>Telefilm</h3>
+                            <div class="dubber-works-title">
+                                <div class="dubber-works-title-movie">
+                                    <h4>Titolo</h4>
+                                </div>
+                                <div class="dubber-works-title-character">
+                                    <h4>Personaggio</h4>
+                                </div>
+                                <div class="dubber-works-title-actor">
+                                    <h4>Interprete originale</h4>
+                                </div>
                             </div>
                         </div>
-                        <div id="dubberWorks"></div>
+                        <div id="tab-others" class="tab-content">
+                            TODO
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,6 +94,7 @@
         <script src="/__/firebase/7.12.0/firebase-database.js"></script>
         <script src="/__/firebase/init.js"></script>      
         <script type="text/javascript" src="utils.js"></script>		
+        <script type="text/javascript" src="tabber.js"></script>		
         <script type="text/javascript" src="dubber-page.js"></script>		
     </body>
 </html>        
