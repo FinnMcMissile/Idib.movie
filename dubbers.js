@@ -1,7 +1,8 @@
 var dubbers = {
   search : function(filter) {},
   clearFilter: function() {},
-  PAGESIZE: 500
+  PAGESIZE: 500,
+  openDubber: function(dubberKey) {}
 };
 
 ( dubbers => {
@@ -26,11 +27,17 @@ var dubbers = {
       dubbersGallery.refresh(dubbersList);
   }
 
+  dubbers.openDubber = function(dubberKey) {
+    console.log("open dubber "+ dubberKey);
+    window.location = "dubber-page.html?dubberKey=" + dubberKey;
+  }
+
   function loadNextPage(lastLoaded) {
     const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').startAt(lastLoaded).limitToFirst(dubbers.PAGESIZE);
     dubbersRef.once("value", snap => {
         snap.forEach( dubberSnap => {
             var dubber = dubberSnap.val();
+            dubber.key = dubberSnap.key;
             if (dubber.indexName == lastLoaded)
                 return;
             dubber.works = null;
@@ -55,7 +62,8 @@ var dubbers = {
           return utils.render($('#dubber-template').html(), {
             name: dubber.name, 
             photo: dubber.photo ? utils.remoteURL(dubber.photo.name) : "images/no-dubber-photo.jpg",
-            alt: dubber.photo ? dubber.photo.description : "nessuna immagine"
+            alt: dubber.photo ? dubber.photo.description : "nessuna immagine",
+            key: dubber.key
         });            
       }
   });
@@ -74,6 +82,7 @@ var dubbers = {
         var lastLoaded = null;
         snap.forEach( dubberSnap => {
             var dubber = dubberSnap.val();
+            dubber.key = dubberSnap.key;
             dubber.works = null;
             fullDubbersList.push(dubber);
             lastLoaded = dubber.indexName;

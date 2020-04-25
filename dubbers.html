@@ -41,11 +41,11 @@
 		<!-- TEMPLATE -->
 		<script id="dubber-template" type="text/template">
 			<div class="gallery-item">
-				<div class="gallery-item-photo">
+				<div class="gallery-item-photo link" onclick="dubbers.openDubber('{key}')">
 					<img src="{photo}" alt="{alt}">
 				</div>
 				<div class="gallery-title">
-					<div class="boxed-text bold">
+					<div class="boxed-text bold link" onclick="dubbers.openDubber('{key}')">
 					   {name}
 				   </div>
 				</div>
