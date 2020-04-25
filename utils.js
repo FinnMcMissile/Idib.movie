@@ -18,6 +18,9 @@ var utils = {
             if ($(elemId) != null && $(elemId).length > 0) {
                 if ($(elemId).is("img")) {
                     $(elemId).attr("src",value);
+                } else if ($(elemId).is("source")) {
+                    source = $(elemId);
+                    source.attr("src", value).appendTo(source.parent());
                 } else if ($(elemId).is("a")) {
                     $(elemId).attr("href",value);
                 } else {

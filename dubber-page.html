@@ -9,12 +9,23 @@
 	<body>
         <div class="container">
             <div class="content-wrapper">
-                <div class="sidebar">
+                <div class="side-bar">
                     <div class="dubber-photo">
                         <div class="dubber-photo-image">
                             <img id="photo" src="" alt="">
                         </div>
                         <div id="photoDescription" class="dubber-photo-description mt-5">
+                        </div>
+                    </div>
+                    <div class="side-panel">
+                        <div class="side-panel-title">
+                            Audio
+                        </div>
+                        <div class="side-panel-body">
+                            <audio controls>
+                                <source id="audioSample" src="" type="audio/mpeg">
+                            </audio>
+                            <p id="audioDescription"></p>
                         </div>
                     </div>
                 </div>
@@ -95,6 +106,7 @@
         <script src="/__/firebase/init.js"></script>      
         <script type="text/javascript" src="utils.js"></script>		
         <script type="text/javascript" src="tabber.js"></script>		
+        <script type="text/javascript" src="parse-md-js/parsemd.js"></script>		
         <script type="text/javascript" src="dubber-page.js"></script>		
     </body>
 </html>        

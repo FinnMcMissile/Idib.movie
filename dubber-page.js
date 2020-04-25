@@ -20,11 +20,14 @@ var dubberPage = {
     dubberRef.once("value", snap => {
         snap.forEach( dubberSnap => {
             dubber = dubberSnap.val();
+
             utils.showFormData({
                 name: dubber.name,
                 photo: dubber.photo ? utils.remoteURL(dubber.photo.name) : "images/no-dubber-photo.jpg",
                 photoDescription: dubber.photo ? (dubber.photo.description ? dubber.photo.description : `Foto di ${dubber.name}`) : "",
-                source: utils.remoteURL(dubber.source)
+                source: utils.remoteURL(dubber.source),
+                audioSample: dubber.audio ? utils.remoteURL(dubber.audio.name) : "",
+                audioDescription: dubber.audio ? parseMarkdown(dubber.audio.description) : "nessun audio disponibile" 
             });
 
             dubber.works.forEach(work => {
