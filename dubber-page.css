@@ -126,3 +126,15 @@
     width: 25%;
     padding-left: 0.5rem;
 }
+
+.no-audio {
+    background: #F1F3F4;
+    width: 300px;
+    height: 54px;
+    border-radius: 2em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

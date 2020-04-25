@@ -22,9 +22,12 @@
                             Audio
                         </div>
                         <div class="side-panel-body">
-                            <audio controls>
+                            <audio id="audioPlayer" controls>
                                 <source id="audioSample" src="" type="audio/mpeg">
                             </audio>
+                            <div class="no-audio" style="display:none" id="noAudio">
+                                <img src="images/volume-mute.svg"/>
+                            </div>
                             <p id="audioDescription"></p>
                         </div>
                     </div>
@@ -55,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="dubber-works-list" id="dubberWorks"></div>
-                            <h3>Telefilm</h3>
+                            <!-- <h3>Telefilm</h3>
                             <div class="dubber-works-title">
                                 <div class="dubber-works-title-movie">
                                     <h4>Titolo</h4>
@@ -66,7 +69,7 @@
                                 <div class="dubber-works-title-actor">
                                     <h4>Interprete originale</h4>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div id="tab-others" class="tab-content">
                             TODO

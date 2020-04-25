@@ -19,8 +19,15 @@ var dubberPage = {
             photoDescription: dubber.photo ? (dubber.photo.description ? dubber.photo.description : `Foto di ${dubber.name}`) : "",
             source: utils.remoteURL(dubber.source),
             audioSample: dubber.audio ? utils.remoteURL(dubber.audio.name) : "",
-            audioDescription: dubber.audio ? parseMarkdown(dubber.audio.description) : "nessun audio disponibile" 
+            audioDescription: dubber.audio ? parseMarkdown(dubber.audio.description) : "Nessun audio disponibile" 
         });
+
+        if (!dubber.audio) {
+            $("#audioPlayer").hide();
+            $("#noAudio").show();
+        } else {
+            $("#noAudio").hide();
+        }
 
         dubber.works.forEach(work => {
             $("#dubberWorks").append(utils.render($('#dubber-work-template').html(), {
