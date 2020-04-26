@@ -11,18 +11,17 @@ var moviePage = {
         window.location = "dubber-page.html?dubberSource=" + dubberSource;
     }
 
-    showMovie = function(snap) {
-        movie = snap.val();
+    showMovie = function(movie) {
         utils.showFormData({
             title: movie.italianTitle,
             director: movie.director,
-            year: movie.year,
+            year: movie.year ? movie.year : "",
             poster: movie.poster ? utils.remoteURL(movie.poster.name) : "images/no-movie-poster.jpg",
             posterDescription: movie.poster ? movie.poster.description : "Locandina del film",
             country: movie.country,
             originalTitle: movie.originalTitle,
             italianTitle: movie.italianTitle,
-            production: movie.country + " " + movie.year,
+            production: movie.country + " " + (movie.year ? movie.year : ""),
             source: utils.remoteURL(movie.source)
         });
 
@@ -48,12 +47,31 @@ var moviePage = {
 
     if (movieKey != null) {
         database.ref().child(`movies/${movieKey}`).once("value", snap => {
-            showMovie(snap);
+            movieSource = snap.val().source;
+            database.ref("additionalData/movies").orderByChild("source").equalTo(movieSource).once("value", addDataSnap => {
+                addData = addDataSnap.val();
+                if (addData && addData.length > 0) {
+                    var movie = snap.val();
+                    $.extend(true, movie, addData[0]);
+                    showMovie(movie);
+                } else {
+                    showMovie(snap.val());
+                }
+            });
         });
     } else {
         database.ref("movies").orderByChild("source").equalTo(movieSource).once("value", snap => {
             snap.forEach(movieSnap => {
-                showMovie(movieSnap);
+                database.ref("additionalData/movies").orderByChild("source").equalTo(movieSource).once("value", addDataSnap => {
+                    addData = addDataSnap.val();
+                    if (addData && addData.length > 0) {
+                        var movie = movieSnap.val();
+                        $.extend(true, movie, addData[0]);
+                        showMovie(movie);
+                    } else {
+                        showMovie(movieSnap.val());
+                    }
+                });
             });
         });
     }

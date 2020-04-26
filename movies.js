@@ -50,11 +50,17 @@ var movies = {
         });
     }
 
+    var additionalData = [];
     var fullMoviesList = [];
     var moviesList = fullMoviesList;
     var moviesGallery = new Gallery({
         idGalleryHost: "#moviesGallery",
         renderItem: (movie) => {
+            var addData = additionalData.find(data => { return data.source == movie.source; });
+            if (addData != null) {
+                $.extend(true, movie, addData);
+                movie.cast = null;
+            }
             return utils.render($('#movie-template').html(), {
                 title: movie.indexTitle, 
                 year: movie.year ? movie.year : "", 
@@ -67,6 +73,11 @@ var movies = {
     });
 
     var database = firebase.database();
+
+    database.ref("additionalData/movies").once("value", addDataSnap => {
+        additionalData = addDataSnap.val();
+    });
+
     const movieRef = database.ref().child('movies').orderByChild('indexTitle').limitToFirst(moviesGallery.PAGESIZE);
     moviesGallery.showLoading(true);
     movieRef.once("value", snap => {
