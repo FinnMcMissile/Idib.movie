@@ -41,24 +41,15 @@ var dubberPage = {
         });
     }
 
-    var dubberKey  = utils.extractParamFromQueryString(location.search.substring(1), "dubberKey");    
-    console.log("opened dubber "+ dubberKey);
-
     var dubberSource  = utils.extractParamFromQueryString(location.search.substring(1), "dubberSource");    
     console.log("opened dubber "+ dubberSource);
 
     var database = firebase.database();
 
-    if (dubberKey != null) {
-        database.ref().child(`dubbers/${dubberKey}`).once("value", snap => {
-            showDubber(snap);
+    database.ref("dubbers").orderByChild("source").equalTo(dubberSource).once("value", snap => {
+        snap.forEach( dubberSnap => {
+            showDubber(dubberSnap);
         });
-    } else {
-        database.ref("dubbers").orderByChild("source").equalTo(dubberSource).once("value", snap => {
-            snap.forEach( dubberSnap => {
-                showDubber(dubberSnap);
-            });
-        });
-    }
+    });
 
 })(dubberPage);

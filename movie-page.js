@@ -37,44 +37,24 @@ var moviePage = {
         });
     }
 
-    var movieKey  = utils.extractParamFromQueryString(location.search.substring(1), "movieKey");    
-    console.log("opened movie "+ movieKey);
-
     var movieSource  = utils.extractParamFromQueryString(location.search.substring(1), "movieSource");    
     console.log("opened movie "+ movieSource);
 
     var database = firebase.database();
 
-    if (movieKey != null) {
-        database.ref().child(`movies/${movieKey}`).once("value", snap => {
-            movieSource = snap.val().source;
-            database.ref("additionalData/movies").orderByChild("source").equalTo(movieSource).once("value", addDataSnap => {
-                addData = addDataSnap.val();
-                if (addData && addData.length > 0) {
-                    var movie = snap.val();
-                    $.extend(true, movie, addData[0]);
-                    showMovie(movie);
-                } else {
-                    showMovie(snap.val());
+    database.ref("movies").orderByChild("source").equalTo(movieSource).once("value", snap => {
+        snap.forEach( movieSnap => {
+            var movie = movieSnap.val();
+            database.ref("additionalData/movies").orderByChild("source").equalTo(movieSource).once("value", addMovieDataSnap => {
+                if (addMovieDataSnap) {
+                    addMovieDataSnap.forEach(addDataSnap => {
+                        addData = addDataSnap.val();
+                        $.extend(true, movie, addData);
+                    });
                 }
+                showMovie(movie);
             });
         });
-    } else {
-        database.ref("movies").orderByChild("source").equalTo(movieSource).once("value", snap => {
-            snap.forEach( movieSnap => {
-                var movie = movieSnap.val();
-                database.ref("additionalData/movies").orderByChild("source").equalTo(movieSource).once("value", addDataSnap => {
-                    if (addDataSnap) {
-                        addDataSnap.forEach(adSnap => {
-                            addData = adSnap.val();
-                            $.extend(true, movie, addData);
-                        });
-                    }
-                    showMovie(movie);
-                });
-            });
-        });
-    }
-
+    });
 
 })(moviePage);

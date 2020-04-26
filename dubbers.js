@@ -2,7 +2,7 @@ var dubbers = {
   search : function(filter) {},
   clearFilter: function() {},
   PAGESIZE: 500,
-  openDubber: function(dubberKey) {}
+  openDubber: function(dubberSource) {}
 };
 
 ( dubbers => {
@@ -27,9 +27,9 @@ var dubbers = {
       dubbersGallery.refresh(dubbersList);
   }
 
-  dubbers.openDubber = function(dubberKey) {
-    console.log("open dubber "+ dubberKey);
-    window.location = "dubber-page.html?dubberKey=" + dubberKey;
+  dubbers.openDubber = function(dubberSource) {
+    console.log("open dubber "+ dubberSource);
+    window.location = "dubber-page.html?dubberSource=" + dubberSource;
   }
 
   function loadNextPage(lastLoaded) {
@@ -37,7 +37,6 @@ var dubbers = {
     dubbersRef.once("value", snap => {
         snap.forEach( dubberSnap => {
             var dubber = dubberSnap.val();
-            dubber.key = dubberSnap.key;
             if (dubber.indexName == lastLoaded)
                 return;
             dubber.works = null;
@@ -63,7 +62,7 @@ var dubbers = {
             name: dubber.name, 
             photo: dubber.photo ? utils.remoteURL(dubber.photo.name) : "images/no-dubber-photo.jpg",
             alt: dubber.photo ? dubber.photo.description : "nessuna immagine",
-            key: dubber.key
+            source: dubber.source
         });            
       }
   });
@@ -82,7 +81,6 @@ var dubbers = {
         var lastLoaded = null;
         snap.forEach( dubberSnap => {
             var dubber = dubberSnap.val();
-            dubber.key = dubberSnap.key;
             dubber.works = null;
             fullDubbersList.push(dubber);
             lastLoaded = dubber.indexName;

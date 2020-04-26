@@ -1,7 +1,7 @@
 var movies = {
     search : function(filter) {},
     clearFilter: function() {},
-    openMovie: function(movieKey) {}
+    openMovie: function(movieSource) {}
 };
 
 ( movies => {
@@ -26,9 +26,9 @@ var movies = {
         moviesGallery.refresh(moviesList);
     }
 
-    movies.openMovie = function(movieKey) {
-        console.log("open movie "+ movieKey);
-        window.location = "movie-page.html?movieKey=" + movieKey;
+    movies.openMovie = function(movieSource) {
+        console.log("open movie "+ movieSource);
+        window.location = "movie-page.html?movieSource=" + movieSource;
     }
 
     function loadNextPage(lastLoaded) {
@@ -36,7 +36,6 @@ var movies = {
         moviesRef.once("value", snap => {
             snap.forEach( movieSnap => {
                 var movie = movieSnap.val();
-                movie.key = movieSnap.key;
                 if (movie.indexTitle == lastLoaded)
                     return;
                 movie.cast = null;
@@ -66,7 +65,7 @@ var movies = {
                 year: movie.year ? movie.year : "", 
                 poster: movie.poster ? utils.remoteURL(movie.poster.name) : "images/no-movie-poster.jpg",
                 alt: movie.poster ? movie.poster.description : "nessuna immagine",
-                key: movie.key,
+                source: movie.source,
                 objectFit: movie.poster && movie.poster.objectFitUnset ? "object-fit: unset;" : ""
             });            
         }
@@ -84,7 +83,6 @@ var movies = {
         var lastLoaded = null;
         snap.forEach( movieSnap => {
             var movie = movieSnap.val();
-            movie.key = movieSnap.key;
             movie.cast = null;
             fullMoviesList.push(movie);
             lastLoaded = movie.indexTitle;
