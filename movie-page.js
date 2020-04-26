@@ -61,16 +61,16 @@ var moviePage = {
         });
     } else {
         database.ref("movies").orderByChild("source").equalTo(movieSource).once("value", snap => {
-            snap.forEach(movieSnap => {
+            snap.forEach( movieSnap => {
+                var movie = movieSnap.val();
                 database.ref("additionalData/movies").orderByChild("source").equalTo(movieSource).once("value", addDataSnap => {
-                    addData = addDataSnap.val();
-                    if (addData && addData.length > 0) {
-                        var movie = movieSnap.val();
-                        $.extend(true, movie, addData[0]);
-                        showMovie(movie);
-                    } else {
-                        showMovie(movieSnap.val());
+                    if (addDataSnap) {
+                        addDataSnap.forEach(adSnap => {
+                            addData = adSnap.val();
+                            $.extend(true, movie, addData);
+                        });
                     }
+                    showMovie(movie);
                 });
             });
         });
