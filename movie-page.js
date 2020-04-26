@@ -22,7 +22,8 @@ var moviePage = {
             originalTitle: movie.originalTitle,
             italianTitle: movie.italianTitle,
             production: movie.country,
-            source: utils.remoteURL(movie.source)
+            source: utils.remoteURL(movie.source),
+            overview: movie.overview
         });
 
 

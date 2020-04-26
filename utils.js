@@ -14,6 +14,7 @@ var utils = {
 
     utils.showFormData = function(props) {
         for (let [key, value] of Object.entries(props)) {
+            value = value || "";
             var elemId = `#${key}`;
             if ($(elemId) != null && $(elemId).length > 0) {
                 if ($(elemId).is("img")) {
