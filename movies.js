@@ -36,7 +36,7 @@ var movies = {
     }
 
     function loadNextPage(lastLoaded) {
-        const moviesRef = database.ref().child('movies').orderByChild('indexTitle').startAt(lastLoaded).limitToFirst(moviesGallery.PAGESIZE + 1);
+        const moviesRef = database.ref('originalData/movies').orderByChild('indexTitle').startAt(lastLoaded).limitToFirst(moviesGallery.PAGESIZE + 1);
         moviesRef.once("value", snap => {
             snap.forEach( movieSnap => {
                 var movie = movieSnap.val();
@@ -81,7 +81,7 @@ var movies = {
         additionalData = addDataSnap.val();
     });
 
-    const movieRef = database.ref().child('movies').orderByChild('indexTitle').limitToFirst(moviesGallery.PAGESIZE);
+    const movieRef = database.ref('originalData/movies').orderByChild('indexTitle').limitToFirst(moviesGallery.PAGESIZE);
     moviesGallery.showLoading(true);
     movieRef.once("value", snap => {
         var lastLoaded = null;

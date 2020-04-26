@@ -33,7 +33,7 @@ var dubbers = {
   }
 
   function loadNextPage(lastLoaded) {
-    const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').startAt(lastLoaded).limitToFirst(dubbers.PAGESIZE);
+    const dubbersRef = database.ref('originalData/dubbers').orderByChild('indexName').startAt(lastLoaded).limitToFirst(dubbers.PAGESIZE);
     dubbersRef.once("value", snap => {
         snap.forEach( dubberSnap => {
             var dubber = dubberSnap.val();
@@ -75,7 +75,7 @@ var dubbers = {
   }
   else {
     var database = firebase.database();
-    const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').limitToFirst(dubbersGallery.PAGESIZE);
+    const dubbersRef = database.ref('originalData/dubbers').orderByChild('indexName').limitToFirst(dubbersGallery.PAGESIZE);
     dubbersGallery.showLoading(true);
     dubbersRef.once("value", snap => {
         var lastLoaded = null;

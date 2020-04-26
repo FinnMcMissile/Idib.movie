@@ -46,7 +46,7 @@ var dubberPage = {
 
     var database = firebase.database();
 
-    database.ref("dubbers").orderByChild("source").equalTo(dubberSource).once("value", snap => {
+    database.ref("originalData/dubbers").orderByChild("source").equalTo(dubberSource).once("value", snap => {
         snap.forEach( dubberSnap => {
             showDubber(dubberSnap);
         });

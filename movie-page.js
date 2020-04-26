@@ -49,7 +49,7 @@ var moviePage = {
 
     var database = firebase.database();
 
-    database.ref("movies").orderByChild("source").equalTo(movieSource).once("value", snap => {
+    database.ref("originalData/movies").orderByChild("source").equalTo(movieSource).once("value", snap => {
         snap.forEach( movieSnap => {
             var movie = movieSnap.val();
             database.ref("additionalData/movies").orderByChild("source").equalTo(movieSource).once("value", addMovieDataSnap => {
