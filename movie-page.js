@@ -21,9 +21,16 @@ var moviePage = {
             country: movie.country,
             originalTitle: movie.originalTitle,
             italianTitle: movie.italianTitle,
-            production: movie.country + " " + (movie.year ? movie.year : ""),
-            source: utils.remoteURL(movie.source)
+            production: movie.country,
+            source: utils.remoteURL(movie.source),
+            major: movie.major ? movie.major : ""
         });
+
+        if (movie.major) {
+            $("#majorInfo").show();
+        } else {
+            $("#majorInfo").hide();
+        }
 
         movie.cast.forEach(member => {
             $("#movieCast").append(utils.render($('#movie-cast-member-template').html(), {
