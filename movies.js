@@ -6,6 +6,10 @@ var movies = {
 
 ( movies => {
 
+    $(document).ready(() => {
+        $("#filter").val("");
+    });
+
     movies.search = function(filter) {
         if (filter == "") return;
 
