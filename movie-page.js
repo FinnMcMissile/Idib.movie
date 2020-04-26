@@ -22,15 +22,9 @@ var moviePage = {
             originalTitle: movie.originalTitle,
             italianTitle: movie.italianTitle,
             production: movie.country,
-            source: utils.remoteURL(movie.source),
-            major: movie.major ? movie.major : ""
+            source: utils.remoteURL(movie.source)
         });
 
-        if (movie.major) {
-            $("#majorInfo").show();
-        } else {
-            $("#majorInfo").hide();
-        }
 
         movie.cast.forEach(member => {
             $("#movieCast").append(utils.render($('#movie-cast-member-template').html(), {
@@ -42,6 +36,14 @@ var moviePage = {
                 dubberSource: (member.dubber && member.dubber.source) ? member.dubber.source : "",
             }));
         });
+
+        movie.additionalInfos.forEach(info => {
+            $("#additionalInfos").append(utils.render($('#movie-additional-info-template').html(), {
+                description: info.description,
+                content: parseMarkdown(info.content)
+            }));
+        });
+
     }
 
     var movieSource  = utils.extractParamFromQueryString(location.search.substring(1), "movieSource");    

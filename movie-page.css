@@ -18,7 +18,6 @@
     padding: 1em 2em 1em 2em;
 }
 
-
 .movie-poster {
     width: 30%;
     display: flex;
@@ -69,6 +68,10 @@
 
 .movie-detail {
     margin-top: 0.5em;
+}
+
+.movie-detail p {
+    margin: 0;
 }
 
 .movie-cast {
