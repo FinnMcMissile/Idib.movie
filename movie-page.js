@@ -37,10 +37,10 @@ var moviePage = {
             tmdbCredits.attr("href", `https://www.themoviedb.org/movie/${movie.tmdbID}?language=it-IT`);
             // $("#overview").insertAfter(tmdbCredits);
             $("#overview").click(function(){
-                if ($("#overview").hasClass("three-lines-ellipsis")) {
-                    $("#overview").removeClass("three-lines-ellipsis");
+                if ($("#overview").hasClass("overview-with-ellipsis")) {
+                    $("#overview").removeClass("overview-with-ellipsis");
                 } else {
-                    $("#overview").addClass("three-lines-ellipsis");
+                    $("#overview").addClass("overview-with-ellipsis");
                 }
                 
               });

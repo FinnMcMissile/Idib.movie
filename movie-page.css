@@ -139,16 +139,16 @@
     display: block;
 }
 
-/* styles for 3 lines of text + '...' */ 
+/* styles for 5 lines of text + '...' */ 
 /* source: http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation/ */
-.three-lines-ellipsis {
+.overview-with-ellipsis {
     /* hide text if it more than N lines  */
     overflow: hidden;
     /* for set '...' in absolute position */
     position: relative; 
     /* use this value to count block height */
     line-height: 1.2em;
-    /* max-height = line-height (1.2) * lines max number (3) */
+    /* max-height = line-height (1.2) * lines max number (5) */
     max-height: 6.0em; 
     /* fix problem when last visible word doesn't adjoin right side  */
     text-align: justify;  
@@ -157,7 +157,7 @@
     padding-right: 1em;
   }
   /* create the ... */
-  .three-lines-ellipsis:before {
+  .overview-with-ellipsis:before {
     /* points in the end */
     content: '...';
     /* absolute position */
@@ -167,7 +167,7 @@
     bottom: 0;
   }
   /* hide ... if we have text, which is less than or equal to max lines */
-  .three-lines-ellipsis:after {
+  .overview-with-ellipsis:after {
     /* points in the end */
     content: '';
     /* absolute position */
