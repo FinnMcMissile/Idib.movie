@@ -124,3 +124,60 @@
 .movie-cast-member-actor {
     width: 30%;
 }
+
+#overview {
+    margin-block-end: 0.3rem;
+    line-height: 1.2rem;
+    text-align: justify; 
+}
+
+.tmdb-credits {
+    margin: 0;
+    font-size: x-small;
+    text-align: end;
+    font-style: italic;    
+    display: block;
+}
+
+/* styles for 3 lines of text + '...' */ 
+/* source: http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation/ */
+.three-lines-ellipsis {
+    /* hide text if it more than N lines  */
+    overflow: hidden;
+    /* for set '...' in absolute position */
+    position: relative; 
+    /* use this value to count block height */
+    line-height: 1.2em;
+    /* max-height = line-height (1.2) * lines max number (3) */
+    max-height: 6.0em; 
+    /* fix problem when last visible word doesn't adjoin right side  */
+    text-align: justify;  
+    /* place for '...' */
+    margin-right: -1em;
+    padding-right: 1em;
+  }
+  /* create the ... */
+  .three-lines-ellipsis:before {
+    /* points in the end */
+    content: '...';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of block */
+    right: 0;
+    bottom: 0;
+  }
+  /* hide ... if we have text, which is less than or equal to max lines */
+  .three-lines-ellipsis:after {
+    /* points in the end */
+    content: '';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of text */
+    right: 0;
+    /* set width and height */
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    /* bg color = bg color under block */
+    background: rgb(93,199,199); /* brutto ma inevitabile: cablato il colore del background in quel punto */
+  }

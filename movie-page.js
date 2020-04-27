@@ -1,3 +1,7 @@
+const tmdbCreditsTemplate = `
+    <a class="tmdb-credits" target="blank">riassunto del film tratto da TMDB</a>
+`
+
 var moviePage = {
     openDubber: function(dubberSource) {}
 };
@@ -22,8 +26,25 @@ var moviePage = {
             originalTitle: movie.originalTitle,
             italianTitle: movie.italianTitle,
             production: movie.country,
-            source: utils.remoteURL(movie.source),
-            overview: movie.overview
+            source: utils.remoteURL(movie.source)
+        });
+
+        tmdb.getOverview(movie.tmdbID, (overview) => {
+            if (overview == "") return;
+
+            $("#overview")[0].innerHTML = overview;
+            var tmdbCredits = $(tmdbCreditsTemplate);
+            tmdbCredits.attr("href", `https://www.themoviedb.org/movie/${movie.tmdbID}?language=it-IT`);
+            // $("#overview").insertAfter(tmdbCredits);
+            $("#overview").click(function(){
+                if ($("#overview").hasClass("three-lines-ellipsis")) {
+                    $("#overview").removeClass("three-lines-ellipsis");
+                } else {
+                    $("#overview").addClass("three-lines-ellipsis");
+                }
+                
+              });
+            $(tmdbCredits).insertAfter("#overview");
         });
 
 
