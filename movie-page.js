@@ -29,21 +29,22 @@ var moviePage = {
             source: utils.remoteURL(movie.source)
         });
 
+        if (movie.notes) {
+            var notes = parseMarkdown(movie.notes[0]);
+            for (n = 1; n < movie.notes.length; n++) {
+                notes += parseMarkdown(movie.notes[n]);
+            }
+            $("#notes")[0].innerHTML = notes;
+            $("#notes").click(function(){ utils.toggleEllipsis(this) });
+        }
+
         tmdb.getOverview(movie.tmdbID, (overview) => {
             if (overview == "") return;
 
             $("#overview")[0].innerHTML = overview;
             var tmdbCredits = $(tmdbCreditsTemplate);
             tmdbCredits.attr("href", `https://www.themoviedb.org/movie/${movie.tmdbID}?language=it-IT`);
-            // $("#overview").insertAfter(tmdbCredits);
-            $("#overview").click(function(){
-                if ($("#overview").hasClass("overview-with-ellipsis")) {
-                    $("#overview").removeClass("overview-with-ellipsis");
-                } else {
-                    $("#overview").addClass("overview-with-ellipsis");
-                }
-                
-              });
+            $("#overview").click(function(){ utils.toggleEllipsis(this) });
             $(tmdbCredits).insertAfter("#overview");
         });
 

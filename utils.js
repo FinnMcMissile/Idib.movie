@@ -1,6 +1,7 @@
 var utils = {
     render(template, props) {},
-    remoteURL(url) {}
+    remoteURL(url) {},
+    toggleEllipsis(elem) {}
 };
 ( utils => {
 
@@ -41,6 +42,14 @@ var utils = {
         });
         if (typeof param === "undefined") return null;
         return param.split("=")[1];
+    }
+
+    utils.toggleEllipsis = function(elem) {
+        if ($(elem).hasClass("with-ellipsis")) {
+            $(elem).removeClass("with-ellipsis");
+        } else {
+            $(elem).addClass("with-ellipsis");
+        }
     }
 
 })(utils);
