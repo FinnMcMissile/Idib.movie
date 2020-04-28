@@ -13,8 +13,7 @@ var tmdb = {
         }
             
         $.get(`https://api.themoviedb.org/3/movie/${tmdbID}/translations?api_key=${API_KEY}`, data => {
-            console.log(data.translations[15]);
-            var italian = data.translations.find(trans => { return trans.iso_3166_1 == "IT"; });
+            var italian = data.translations.find(trans => { return trans.iso_3166_1 == "IT" && trans.iso_639_1 == "it";});
             overviewCallback (italian ? italian.data.overview : "");
         })
     }

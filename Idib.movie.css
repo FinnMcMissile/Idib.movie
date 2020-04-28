@@ -142,10 +142,6 @@ h1 {
     padding-right: 0.5em;
 }
 
-/* html {
-    --lh: 1.2rem;
-}
- */
 .long-text {
     --lh: 1.2rem;
     margin-block-end: 0.3rem;
@@ -157,21 +153,17 @@ h1 {
 .long-text p {
     margin-block-end: 0;
     margin-block-start: 0;
+    cursor: pointer;
 }
 
 /* styles for 5 lines of text + '...' */ 
 /* source: http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation/ */
 .with-ellipsis {
-    /* --max-lines: 3;    
-    line-height: var(--lh);     */
     /* hide text if it more than N lines  */
     overflow: hidden;
     /* for set '...' in absolute position */
     position: relative; 
     /* use this value to count block height */
-    /* line-height: 1.2em; */
-    /* max-height = line-height (1.2) * lines max number (5) */
-    /* max-height: 6.0em;  */
     max-height: calc(var(--lh) * var(--max-lines));
     /* fix problem when last visible word doesn't adjoin right side  */
     text-align: justify;  

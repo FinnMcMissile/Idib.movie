@@ -1,5 +1,5 @@
 const tmdbCreditsTemplate = `
-    <a class="tmdb-credits" target="blank">riassunto del film tratto da TMDB</a>
+    <a class="tmdb-credits" target="blank">Riassunto del film tratto da TMDB</a>
 `
 
 var moviePage = {
