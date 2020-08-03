@@ -11,13 +11,12 @@
 }
 
 .movie-header {
-    height: 400px;
+    min-height: 400px;
     color: white;
     display: flex;
     flex-direction: row;
     padding: 1em 2em 1em 2em;
 }
-
 
 .movie-poster {
     width: 30%;
@@ -71,6 +70,10 @@
     margin-top: 0.5em;
 }
 
+.movie-detail p {
+    margin: 0;
+}
+
 .movie-cast {
     width: 70%;
     border-left: 1px solid lightgray;
@@ -121,3 +124,24 @@
 .movie-cast-member-actor {
     width: 30%;
 }
+
+.tmdb-credits {
+    margin: 0;
+    font-size: x-small;
+    text-align: end;
+    font-style: italic;    
+    display: block;
+}
+
+.with-ellipsis:after {
+    background: rgb(93,199,199); /* brutto ma inevitabile: cablato il colore del background in quel punto */
+}
+
+#notes {
+    --max-lines: 5;
+}
+
+#overview {
+    --max-lines: 6;    
+}
+

@@ -3,20 +3,77 @@
 		<title>Italians dub it better</title>
 		<link rel="icon" href="Immagini/.ico">
 		<link rel="stylesheet" href="Idib.movie.css">
+		<link rel="stylesheet" href="tabber.css">
 		<link rel="stylesheet" href="dubber-page.css">
 	</head>
 	<body>
         <div class="container">
-            <div class="dubber-header dubber-backdrop">
-                <div class="dubber-photo">
-                    <div class="dubber-photo-image">
-                        <img id="photo" src="" alt="">
+            <div class="content-wrapper">
+                <div class="side-bar">
+                    <div class="dubber-photo">
+                        <div class="dubber-photo-image">
+                            <img id="photo" src="" alt="">
+                        </div>
+                        <div id="photoDescription" class="dubber-photo-description mt-5">
+                        </div>
                     </div>
-                    <div id="photoDescription" class="dubber-photo-description mt-5">
+                    <div class="side-panel">
+                        <div class="side-panel-title">
+                            Audio
+                        </div>
+                        <div class="side-panel-body">
+                            <audio id="audioPlayer" controls>
+                                <source id="audioSample" src="" type="audio/mpeg">
+                            </audio>
+                            <div class="no-audio" style="display:none" id="noAudio">
+                                <img src="images/volume-mute.svg"/>
+                            </div>
+                            <p id="audioDescription"></p>
+                        </div>
                     </div>
                 </div>
-                <div class="ml-10 dubber-info">
-                    <h1 id="name"></h1>
+                <div class="main-content">
+                    <div class="dubber-info">
+                        <h1 id="name"></h1>
+                    </div>
+                    <div class="dubber-mini-bio">
+                        Nessuna informazione disponibile
+                    </div>
+                    <div class="dubber-works">
+                        <ul class="tabber">
+                            <li class="tab-link current h2" data-tab="tab-dubbings">Doppiaggio</li>
+                            <li class="tab-link h2" data-tab="tab-others">Altre Attività</li>
+                        </ul>      
+                        <div id="tab-dubbings" class="tab-content current">
+                            <h3>Film Cinema</h3>
+                            <div class="dubber-works-title">
+                                <div class="dubber-works-title-movie">
+                                </div>
+                                <div class="dubber-works-title-character">
+                                    <h4>Personaggio</h4>
+                                </div>
+                                <div class="dubber-works-title-actor">
+                                    <h4>Interprete originale</h4>
+                                </div>
+                            </div>
+                            <div class="dubber-works-list" id="dubberWorks"></div>
+                            <!-- <h3>Telefilm</h3>
+                            <div class="dubber-works-title">
+                                <div class="dubber-works-title-movie">
+                                    <h4>Titolo</h4>
+                                </div>
+                                <div class="dubber-works-title-character">
+                                    <h4>Personaggio</h4>
+                                </div>
+                                <div class="dubber-works-title-actor">
+                                    <h4>Interprete originale</h4>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div id="tab-others" class="tab-content">
+                            TODO
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,11 +82,33 @@
             Tutti i diritti riservati. <a id="source" href="" target="blank">Visita la pagina originale</a>
         </div>
 
+        <!-- TEMPLATE -->
+        <script id="dubber-work-template" type="text/template">
+            <div class="dubber-work">
+                <div class="dubber-work-movie">
+                    <div class="dubber-work-movie-poster {link}" onclick="dubberPage.openMovie('{movieSource}')">
+                        <img src="{photo}" alt="">
+                    </div>
+                    <div class="dubber-work-movie-title">
+                        <strong class="{link}" onclick="dubberPage.openMovie('{movieSource}')">{movie}</strong>
+                    </div>
+                </div>
+                <div class="dubber-work-movie-character">
+                    {character}
+                </div>
+                <div class="dubber-work-movie-actor">
+                    {actor}
+                </div>
+            </div>
+        </script>	
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="/__/firebase/7.13.0/firebase-app.js"></script>  
         <script src="/__/firebase/7.12.0/firebase-database.js"></script>
         <script src="/__/firebase/init.js"></script>      
         <script type="text/javascript" src="utils.js"></script>		
+        <script type="text/javascript" src="tabber.js"></script>		
+        <script type="text/javascript" src="parse-md-js/parsemd.js"></script>		
         <script type="text/javascript" src="dubber-page.js"></script>		
     </body>
 </html>        

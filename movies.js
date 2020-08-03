@@ -1,10 +1,14 @@
 var movies = {
     search : function(filter) {},
     clearFilter: function() {},
-    openMovie: function(movieKey) {}
+    openMovie: function(movieSource) {}
 };
 
 ( movies => {
+
+    $(document).ready(() => {
+        $("#filter").val("");
+    });
 
     movies.search = function(filter) {
         if (filter == "") return;
@@ -26,17 +30,16 @@ var movies = {
         moviesGallery.refresh(moviesList);
     }
 
-    movies.openMovie = function(movieKey) {
-        console.log("open movie "+ movieKey);
-        window.location = "movie-page.html?movieKey=" + movieKey;
+    movies.openMovie = function(movieSource) {
+        console.log("open movie "+ movieSource);
+        window.location = "movie-page.html?movieSource=" + movieSource;
     }
 
     function loadNextPage(lastLoaded) {
-        const moviesRef = database.ref().child('movies').orderByChild('indexTitle').startAt(lastLoaded).limitToFirst(moviesGallery.PAGESIZE + 1);
+        const moviesRef = database.ref('originalData/movies').orderByChild('indexTitle').startAt(lastLoaded).limitToFirst(moviesGallery.PAGESIZE + 1);
         moviesRef.once("value", snap => {
             snap.forEach( movieSnap => {
                 var movie = movieSnap.val();
-                movie.key = movieSnap.key;
                 if (movie.indexTitle == lastLoaded)
                     return;
                 movie.cast = null;
@@ -50,30 +53,40 @@ var movies = {
         });
     }
 
+    var additionalData = [];
     var fullMoviesList = [];
     var moviesList = fullMoviesList;
     var moviesGallery = new Gallery({
         idGalleryHost: "#moviesGallery",
         renderItem: (movie) => {
+            var addData = additionalData.find(data => { return data.source == movie.source; });
+            if (addData != null) {
+                $.extend(true, movie, addData);
+                movie.cast = null;
+            }
             return utils.render($('#movie-template').html(), {
                 title: movie.indexTitle, 
                 year: movie.year ? movie.year : "", 
                 poster: movie.poster ? utils.remoteURL(movie.poster.name) : "images/no-movie-poster.jpg",
                 alt: movie.poster ? movie.poster.description : "nessuna immagine",
-                key: movie.key,
+                source: movie.source,
                 objectFit: movie.poster && movie.poster.objectFitUnset ? "object-fit: unset;" : ""
             });            
         }
     });
 
     var database = firebase.database();
-    const movieRef = database.ref().child('movies').orderByChild('indexTitle').limitToFirst(moviesGallery.PAGESIZE);
+
+    database.ref("additionalData/movies").once("value", addDataSnap => {
+        additionalData = addDataSnap.val();
+    });
+
+    const movieRef = database.ref('originalData/movies').orderByChild('indexTitle').limitToFirst(moviesGallery.PAGESIZE);
     moviesGallery.showLoading(true);
     movieRef.once("value", snap => {
         var lastLoaded = null;
         snap.forEach( movieSnap => {
             var movie = movieSnap.val();
-            movie.key = movieSnap.key;
             movie.cast = null;
             fullMoviesList.push(movie);
             lastLoaded = movie.indexTitle;

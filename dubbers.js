@@ -1,7 +1,8 @@
 var dubbers = {
   search : function(filter) {},
   clearFilter: function() {},
-  PAGESIZE: 500
+  PAGESIZE: 500,
+  openDubber: function(dubberSource) {}
 };
 
 ( dubbers => {
@@ -26,8 +27,13 @@ var dubbers = {
       dubbersGallery.refresh(dubbersList);
   }
 
+  dubbers.openDubber = function(dubberSource) {
+    console.log("open dubber "+ dubberSource);
+    window.location = "dubber-page.html?dubberSource=" + dubberSource;
+  }
+
   function loadNextPage(lastLoaded) {
-    const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').startAt(lastLoaded).limitToFirst(dubbers.PAGESIZE);
+    const dubbersRef = database.ref('originalData/dubbers').orderByChild('indexName').startAt(lastLoaded).limitToFirst(dubbers.PAGESIZE);
     dubbersRef.once("value", snap => {
         snap.forEach( dubberSnap => {
             var dubber = dubberSnap.val();
@@ -55,7 +61,8 @@ var dubbers = {
           return utils.render($('#dubber-template').html(), {
             name: dubber.name, 
             photo: dubber.photo ? utils.remoteURL(dubber.photo.name) : "images/no-dubber-photo.jpg",
-            alt: dubber.photo ? dubber.photo.description : "nessuna immagine"
+            alt: dubber.photo ? dubber.photo.description : "nessuna immagine",
+            source: dubber.source
         });            
       }
   });
@@ -68,7 +75,7 @@ var dubbers = {
   }
   else {
     var database = firebase.database();
-    const dubbersRef = database.ref().child('dubbers').orderByChild('indexName').limitToFirst(dubbersGallery.PAGESIZE);
+    const dubbersRef = database.ref('originalData/dubbers').orderByChild('indexName').limitToFirst(dubbersGallery.PAGESIZE);
     dubbersGallery.showLoading(true);
     dubbersRef.once("value", snap => {
         var lastLoaded = null;

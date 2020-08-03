@@ -1,6 +1,7 @@
 var utils = {
     render(template, props) {},
-    remoteURL(url) {}
+    remoteURL(url) {},
+    toggleEllipsis(elem) {}
 };
 ( utils => {
 
@@ -14,10 +15,14 @@ var utils = {
 
     utils.showFormData = function(props) {
         for (let [key, value] of Object.entries(props)) {
+            value = value || "";
             var elemId = `#${key}`;
             if ($(elemId) != null && $(elemId).length > 0) {
                 if ($(elemId).is("img")) {
                     $(elemId).attr("src",value);
+                } else if ($(elemId).is("source")) {
+                    source = $(elemId);
+                    source.attr("src", value).appendTo(source.parent());
                 } else if ($(elemId).is("a")) {
                     $(elemId).attr("href",value);
                 } else {
@@ -37,6 +42,14 @@ var utils = {
         });
         if (typeof param === "undefined") return null;
         return param.split("=")[1];
+    }
+
+    utils.toggleEllipsis = function(elem) {
+        if ($(elem).hasClass("with-ellipsis")) {
+            $(elem).removeClass("with-ellipsis");
+        } else {
+            $(elem).addClass("with-ellipsis");
+        }
     }
 
 })(utils);
